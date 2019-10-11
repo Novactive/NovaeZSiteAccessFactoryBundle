@@ -1,0 +1,85 @@
+.novaezsiteaccessfactory-app {
+    margin-top: 20px;
+}
+.novaezsiteaccessfactory-app .sidebar {
+    border-right: 1px solid red;
+}
+.novaezsiteaccessfactory-app svg.ez-icon.edit-button {
+    fill: #f15a10;
+    width: 25px;
+    height: 25px;
+}
+.novaezsiteaccessfactory-app svg.ez-icon.disabled {
+    fill: #ccc;
+    width: 25px;
+    height: 25px;
+}
+.novaezsiteaccessfactory-app form .form-check .form-check-label {
+    display: inline-block;
+}
+.novaezsiteaccessfactory-app form .form-group .d-block {
+    display: inline !important;
+}
+.novaezsiteaccessfactory-app form fieldset.form-group legend {
+    font-weight: 700;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+.novaezsiteaccessfactory-app form label.required:after, .novaezsiteaccessfactory-app form legend.required:after {
+    color: red;
+    content: " *";
+}
+.novaezsiteaccessfactory-app form .form-check label.required:after {
+    content: '';
+}
+.novaezsiteaccessfactory-app form input:required:focus {
+    border: 1px solid red;
+    outline: none;
+}
+.novaezsiteaccessfactory-app form input:required:hover {
+    opacity: 1;
+}
+.novaezsiteaccessfactory-app .novaezsiteaccessfactory-button-actions {
+    padding: 5px;
+}
+.novaezsiteaccessfactory-app .novaezsiteaccessfactory-button-actions a svg, .novaezsiteaccessfactory-app .novaezsiteaccessfactory-button-actions button svg {
+    fill: #fff;
+}
+.novaezsiteaccessfactory-app .novaezsiteaccessfactory-button-actions a span, .novaezsiteaccessfactory-app .novaezsiteaccessfactory-button-actions button span {
+    color: #fff;
+    margin-top: 7px;
+    padding-left: 5px;
+    display: block;
+    float: right;
+}
+.novaezsiteaccessfactory-app .novaezsiteaccessfactory-table-actions{
+    margin: 0;
+    width: 100%;
+}
+.novaezsiteaccessfactory-app .novaezsiteaccessfactory-table-actions td {
+    padding: 10px;
+}
+.novaezsiteaccessfactory-app .novaezsiteaccessfactory-table-actions td.disabled {
+    color: #ccc;
+}
+.novaezsiteaccessfactory-app tr.siteconfig {
+    height: 100px;
+}
+.novaezsiteaccessfactory-app .novaezsiteaccessfactory-site-actions-button svg {
+    width: 15px;
+    height: 15px;
+}
+.novaezsiteaccessfactory-app form[name=site_configuration] .form-group {
+    padding-bottom: 20px;
+}
+.novaezsiteaccessfactory-app form[name=site_configuration] .form-group label, .novaezsiteaccessfactory-app form[name=site_configuration] .form-group legend.col-form-label {
+    font-size: 1.34em;
+    font-weight: bold;
+    color: #000;
+}
+.novaezsiteaccessfactory-app form[name=site_configuration] .form-group .form-check-label {
+    font-weight: normal;
+}
+

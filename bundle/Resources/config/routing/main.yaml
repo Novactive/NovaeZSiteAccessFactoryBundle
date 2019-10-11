@@ -1,0 +1,3 @@
+_novaezsiteaccessfactory_admin_ui:
+    resource: "@NovaeZSiteAccessFactoryBundle/Controller/Admin"
+    type:     annotation

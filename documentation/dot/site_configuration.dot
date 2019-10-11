@@ -1,0 +1,33 @@
+digraph workflow {
+  ratio="compress" rankdir="LR"
+  node [fontsize="9" fontname="Arial" color="#333333" fillcolor="lightblue" fixedsize="1" width="1"];
+  edge [fontsize="9" fontname="Arial" color="#333333" arrowhead="normal" arrowsize="0.5"];
+
+  place_draft [label="draft", shape=circle, style="filled"];
+  place_pending [label="pending", shape=circle];
+  place_processing [label="processing", shape=circle];
+  place_available [label="available", shape=circle];
+  place_ready [label="ready", shape=circle];
+  place_enabling [label="enabling", shape=circle];
+  place_enabled [label="enabled", shape=circle];
+  place_errored [label="errored", shape=circle];
+  place_unsuitable [label="unsuitable", shape=circle];
+  place_suspending [label="suspending", shape=circle];
+  place_suspended [label="suspended", shape=circle];
+  place_draft -> place_draft [label="edit" style="solid"];
+  place_draft -> place_pending [label="activate" style="solid"];
+  place_pending -> place_draft [label="edit" style="solid"];
+  place_pending -> place_processing [label="start_process" style="solid"];
+  place_processing -> place_available [label="process" style="solid"];
+  place_processing -> place_errored [label="fail" style="solid"];
+  place_available -> place_ready [label="publish" style="solid"];
+  place_suspended -> place_ready [label="publish" style="solid"];
+  place_ready -> place_enabling [label="start_enable" style="solid"];
+  place_enabling -> place_enabled [label="enable" style="solid"];
+  place_enabling -> place_errored [label="fail" style="solid"];
+  place_enabled -> place_unsuitable [label="unpublish" style="solid"];
+  place_unsuitable -> place_suspending [label="start_suspend" style="solid"];
+  place_suspending -> place_suspended [label="suspend" style="solid"];
+  place_suspending -> place_errored [label="fail" style="solid"];
+}
+

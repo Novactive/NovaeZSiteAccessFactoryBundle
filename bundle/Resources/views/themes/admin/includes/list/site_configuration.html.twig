@@ -1,0 +1,92 @@
+{% set withStatus = currentStatus is not defined or currentStatus == 'all' ? true : false %}
+
+{% set editTransition = constant('Novactive\\Bundle\\eZSiteAccessFactoryBundle\\Entity\\SiteConfiguration::TRANS_EDIT') %}
+{% set activateTransition = constant('Novactive\\Bundle\\eZSiteAccessFactoryBundle\\Entity\\SiteConfiguration::TRANS_ACTIVATE') %}
+{% set publishTransition = constant('Novactive\\Bundle\\eZSiteAccessFactoryBundle\\Entity\\SiteConfiguration::TRANS_PUBLISH') %}
+{% set unpublishTransition = constant('Novactive\\Bundle\\eZSiteAccessFactoryBundle\\Entity\\SiteConfiguration::TRANS_UNPUBLISH') %}
+
+{% macro buttonTr(title, icon, link, isEnabled) %}
+    <tr>
+        <td>
+            {% if isEnabled %}
+                <a class="btn btn-sm novaezsiteaccessfactory-site-actions-button" title="{{ title|trans }}" href="{{ link }}">
+                    <svg class="ez-icon edit-button">
+                        <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#{{ icon }}"></use>
+                    </svg>
+                </a>
+            {% else %}
+                <svg class="ez-icon disabled">
+                    <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#{{ icon }}"></use>
+                </svg>
+            {% endif %}
+        </td>
+        <td {% if not isEnabled %} class="disabled" {% endif %}>{{ title|trans }}</td>
+    </tr>
+{% endmacro %}
+{% import _self as helpers %}
+
+
+{% trans_default_domain "novaezsiteaccessfactory" %}
+
+<table class="table table-striped table-hover table-sm">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>{{ 'site.configuration.form.name'|trans }}</th>
+        <th>{{ 'site.configuration.form.siteaccessname.name'|trans }}</th>
+        <th>{{ 'site.configuration.form.languages'|trans }}</th>
+        <th>{{ 'site.configuration.list.contents'|trans }}</th>
+        <th>{{ 'site.configuration.list.design'|trans }}</th>
+        {% if withStatus %}
+            <th>{{ 'site.configuration.list.status'|trans }}</th>
+        {% endif %}
+        <th class="text-center">&nbsp; - &nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+        <tr class="siteconfig">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>
+                <p><strong>{{ 'site.configuration.form.siteaccessname.name'|trans }}</strong>: {{ item.siteaccessName }}
+                </p>
+                <p><strong>{{ 'site.configuration.form.admin.email'|trans }}</strong>: {{ item.adminEmail }}</p>
+            </td>
+            <td>
+                {{ item.prioritizedLanguges|join(',') }}
+            </td>
+            <td>
+                {% if item.root is not null %}
+                    <p>Root Location:
+                        <a href="{{ path(item.root.location, {siteaccess: 'admin'}) }}" target="_blank">{{ ez_content_name(item.root.content) }}</a>
+                    </p>
+                    <p>
+                        Configuration:
+                        <a href="{{ path(item.configuration.location, {siteaccess: 'admin'}) }}" target="_blank">{{ ez_content_name(item.configuration.content) }}</a>
+                    </p>
+                {% endif %}
+            </td>
+            <td>{{ item.design }}</td>
+            {% if withStatus %}
+                <td><span class="badge badge-{{ item.statusStyle }}">{{ item.lastStatus }}</span></td>
+            {% endif %}
+            <td class="text-center">
+                <table class="novaezsiteaccessfactory-table-actions">
+                    {{ helpers.buttonTr('site.configuration.action.edit', 'edit', path("novaezsiteaccessfactoryadmin_siteconfiguration_edit", {id:item.id}), workflow_can(item, editTransition)) }}
+                    {{ helpers.buttonTr('site.configuration.action.activate', 'checkmark', path('novaezsiteaccessfactoryadmin_siteconfiguration_transit', {transition: activateTransition, id: item.id}), workflow_can(item, activateTransition)) }}
+                    {% if workflow_can(item, unpublishTransition) %}
+                        {{ helpers.buttonTr('site.configuration.action.offline', 'swap', path('novaezsiteaccessfactoryadmin_siteconfiguration_transit', {transition: unpublishTransition, id: item.id}), workflow_can(item, unpublishTransition)) }}
+                    {% else %}
+                        {{ helpers.buttonTr('site.configuration.action.online', 'publish', path('novaezsiteaccessfactoryadmin_siteconfiguration_transit', {transition: publishTransition, id: item.id}), workflow_can(item, publishTransition)) }}
+                    {% endif %}
+                    {{ helpers.buttonTr('site.configuration.action.duplicate', 'copy',path('novaezsiteaccessfactoryadmin_siteconfiguration_duplicate', { id: item.id}), true) }}
+                    {{ helpers.buttonTr('site.configuration.action.addtranslation', 'languages-add',path('novaezsiteaccessfactoryadmin_siteconfiguration_addtranslation', { id: item.id}), item.rootLocationId > 0) }}
+                    {{ helpers.buttonTr('site.configuration.action.remove', 'trash','#', false) }}
+                </table>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

@@ -1,0 +1,29 @@
+<!--
+/**
+ * Nova eZ SiteAccess Factory Bundle.
+ *
+ * @author    Sébastien Morel aka Plopix <morel.seb@gmail.com>
+ * @author    Novactive <dir.tech@novactive.com>
+ * @copyright 2019 Novactive
+ * @license   https://github.com/Novactive/NovaeZSiteAccessFactoryBundle/blob/master/LICENSE MIT Licence
+ */
+-->
+<phpunit colors="false" stopOnFailure="false" backupGlobals="false">
+    <testsuites>
+        <testsuite name="NovaeZSiteAccessFactoryBundle">
+            <directory>./Tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./</directory>
+            <exclude>
+                <directory>./Tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="UNIT_TESTS" value="true"/>
+    </php>
+</phpunit>

@@ -1,0 +1,93 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $entityManager: "@novaezsiteaccessfactory.doctrine.entity_manager"
+            $isEnterprise: "%novaezsiteaccessfactory.ezplatform.is_enterprise%"
+
+    # Controllers
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
+
+    # Command
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Command\:
+        resource: '../../Command'
+        bind:
+            $rootDir: "%kernel.project_dir%"
+
+    # Form Type
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Form\:
+        resource: '../../Form'
+
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Validator\:
+        resource: '../../Validator'
+
+    # Doctrine Repository
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Repository\:
+        resource: '../../Repository'
+        tags: ['doctrine.repository_service']
+
+    # Core SiteAccess, a bit complex due to the pre compilation of the container
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Core\SiteAccess\:
+        resource: '../../Core/SiteAccess'
+        exclude: '../../Core/SiteAccess/Injector.php'
+        calls:
+            -   method: setSiteAccessDirectory
+                arguments: ["%novaezsiteaccessfactory_siteaccess_directory%"]
+            -   method: setSiteAccessCacheDirectory
+                arguments: ["%novaezsiteaccessfactory_siteaccess_cache_directory%"]
+
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Core\SiteAccess\Enabler:
+        calls:
+            -   method: setSiteAccessDirectory
+                arguments: ["%novaezsiteaccessfactory_siteaccess_directory%"]
+            -   method: setSiteAccessCacheDirectory
+                arguments: ["%novaezsiteaccessfactory_siteaccess_cache_directory%"]
+        arguments:
+            $siteAccessList: "%ezpublish.siteaccess.list%"
+
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Command\InstallCommand:
+        calls:
+            -   method: setSiteAccessDirectory
+                arguments: ["%novaezsiteaccessfactory_siteaccess_directory%"]
+            -   method: setSiteAccessCacheDirectory
+                arguments: ["%novaezsiteaccessfactory_siteaccess_cache_directory%"]
+
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Twig\SiteConfiguration: ~
+
+    # Workflow Listeners
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Listener\Workflow\SiteConfiguration:
+        tags:
+            - { name: kernel.event_listener, event: workflow.site_configuration.completed.start_process, method: onStartProcessCompleted }
+            - { name: kernel.event_listener, event: workflow.site_configuration.completed.start_enable, method: onStartEnableCompleted }
+            - { name: kernel.event_listener, event: workflow.site_configuration.completed.start_suspend, method: onStartSuspendCompleted }
+
+            - { name: kernel.event_listener, event: workflow.site_configuration.transition.process, method: onProcessStarted }
+            - { name: kernel.event_listener, event: workflow.site_configuration.transition.enable, method: onEnableStarted }
+            - { name: kernel.event_listener, event: workflow.site_configuration.transition.suspend, method: onSuspendStarted }
+
+
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Core\SiteAccessAwareEntityManagerFactory:
+        $settings: { debug: "%kernel.debug%", cache_dir: "%kernel.cache_dir%" }
+
+    novaezsiteaccessfactory.doctrine.entity_manager:
+        class: Doctrine\ORM\EntityManagerInterface
+        factory: 'Novactive\Bundle\eZSiteAccessFactoryBundle\Core\SiteAccessAwareEntityManagerFactory:get'
+
+
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Form\Admin\SiteConfigurationType:
+        arguments:
+            $designList: "%novaezsiteaccessfactory_designlist%"
+            $languageList: "%novaezsiteaccessfactory_languages%"
+
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Menu\AdminBuilder: ~
+    novaezsiteaccessfactory.menu.admin.save_cancel:
+        class: Knp\Menu\MenuItem
+        factory: 'Novactive\Bundle\eZSiteAccessFactoryBundle\Menu\AdminBuilder:createSaveCancelMenu'
+        tags:
+            - { name: knp_menu.menu, alias: novaezsiteaccessfactory.menu.admin.save_cancel }

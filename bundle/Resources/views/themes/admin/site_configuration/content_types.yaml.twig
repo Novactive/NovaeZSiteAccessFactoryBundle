@@ -1,0 +1,126 @@
+# Home page
+-
+    type: content_type
+    mode: create
+    content_type_group: 'Content'
+    identifier: novaezsiteaccessfactory_home_page
+    name:
+        eng-GB: "Home Page"
+    description:
+        eng-GB: "An Homepage"
+    name_pattern: '<name>'
+    url_name_pattern: '<name>'
+    is_container: true
+    lang: eng-GB
+    attributes:
+        -
+            identifier: name
+            type: ezstring
+            name:
+                eng-GB: "Name"
+            description:
+                eng-GB: ""
+            required: true
+            searchable: false
+            info-collector: false
+            disable-translation: false
+            category: 'content'
+            position: 10
+{% if novaezsiteaccessfactory_site.enterprise %}
+        -
+            identifier: page
+            type: ezlandingpage
+            name:
+                eng-GB: "Page"
+            description:
+                eng-GB: ""
+            required: false
+            searchable: false
+            info-collector: false
+            disable-translation: false
+            category: 'content'
+            position: 30
+{% endif %}
+
+# Site Configuration
+-
+    type: content_type
+    mode: create
+    content_type_group: 'Content'
+    identifier: novaezsiteaccessfactory_site_configuration
+    name:
+        eng-GB: "Site Configuration"
+    description:
+        eng-GB: 'Configuration of the website that contains this content.'
+    name_pattern: '<name>'
+    url_name_pattern: '<name>'
+    is_container: false
+    lang: eng-GB
+    attributes:
+        -
+            identifier: name
+            type: ezstring
+            name:
+                eng-GB: "Site Name"
+            description:
+                eng-GB: ""
+            required: true
+            searchable: false
+            info-collector: false
+            disable-translation: false
+            category: 'content'
+            position: 10
+        -
+            identifier: logo
+            type: ezimage
+            name:
+                eng-GB: "Logo"
+            description:
+                eng-GB: "Site Logo"
+            required: false
+            searchable: false
+            info-collector: false
+            disable-translation: false
+            category: 'content'
+            position: 20
+        -
+            identifier: body_css_class
+            type: ezstring
+            name:
+                eng-GB: "CSS class put on the <body>"
+            description:
+                eng-GB: "Enable a specific customization"
+            required: false
+            searchable: false
+            info-collector: false
+            disable-translation: true
+            category: 'content'
+            position: 21
+        -
+            identifier: custom_scss
+            type: eztext
+            field-settings:
+                textRows: 10
+            name:
+                eng-GB: "Injected SCSS"
+            description:
+                eng-GB: "SCSS allows you to nest your CSS rules."
+            required: false
+            searchable: false
+            info-collector: false
+            disable-translation: true
+            category: 'content'
+            position: 22
+        -
+            identifier: footer
+            type: ezrichtext
+            name:
+                eng-GB: "Footer"
+            description:
+                eng-GB: ""
+            required: false
+            searchable: false
+            info-collector: false
+            disable-translation: false
+            category: 'content'
+            position: 70

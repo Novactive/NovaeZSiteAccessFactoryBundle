@@ -1,0 +1,2 @@
+globals:
+    novaezsiteaccessfactory_site: '@Novactive\Bundle\eZSiteAccessFactoryBundle\Twig\SiteConfiguration'

@@ -1,0 +1,31 @@
+---
+
+no.site.configuration.yet: "There is no Site Configuraiton yet"
+create.new.site.configuration: "Create a new Site Configuration"
+
+site.configuration.form.name: "Name"
+site.configuration.form.siteaccessname.name: "SiteAccess Name"
+site.configuration.form.languages: "Languages"
+site.configuration.form.type: "Type"
+site.configuration.form.theme: "Theme"
+site.configuration.form.admin.email: "Admin Email"
+
+site.configuration.list.status: "Status"
+site.configuration.management: "Site Configuration Management"
+
+
+form.submit: "Save"
+form.cancel: "Cancel"
+
+site.configuration.list.contents: "Contents"
+site.configuration.list.design: "Design"
+
+site.configuration.action.edit: "Edit"
+site.configuration.action.activate: "Activate"
+site.configuration.action.offline: "Put offline"
+site.configuration.action.online: "Put online"
+site.configuration.action.duplicate: "Duplicate"
+site.configuration.action.addtranslation: "Add Translation"
+site.configuration.action.remove: "Delete"
+site.configuration.action.others: "Other actions"
+site.configuration.language.hint: "There are languages that do not exist. Create them first. (%missing%)"

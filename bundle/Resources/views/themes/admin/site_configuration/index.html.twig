@@ -1,0 +1,35 @@
+{% extends '@ezdesign/layout/pagelayout.html.twig' %}
+
+{% trans_default_domain "novaezsiteaccessfactory" %}
+
+{% block content %}
+    {% include "@ezdesign/includes/site_configuration_filterer.html.twig" with {
+        route: app.request.get('_route'),
+        limit: pager.maxPerPage,
+        currentStatus: currentStatus,
+        statuses: statuses
+    } only %}
+    {% if pager.currentPageResults|length > 0 %}
+        {% include "@ezdesign/includes/list/site_configuration.html.twig" with {items:pager.currentPageResults, currentStatus: currentStatus} only %}
+        {% if pager.haveToPaginate() %}
+            <div class="pagerfanta">
+                {{ pagerfanta( pager, 'twitter_bootstrap4_translated' ) }}
+            </div>
+        {% endif %}
+    {% else %}
+        <p>{{ "no.site.configuration.yet"|trans }}.</p>
+    {% endif %}
+
+    <div class="novaezsiteaccessfactory-button-actions">
+        <a href="{{ path('novaezsiteaccessfactoryadmin_siteconfiguration_create') }}" class="btn btn-sm btn-secondary">
+            <svg class="ez-icon">
+                <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#create"></use>
+            </svg>
+            <span>{{ "create.new.site.configuration"|trans }}</span>
+        </a>
+    </div>
+
+{% endblock %}
+
+
+
