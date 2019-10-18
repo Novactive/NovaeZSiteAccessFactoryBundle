@@ -43,20 +43,11 @@ _novaezsiteaccessfactory_routes:
     resource: '@NovaeZSiteAccessFactoryBundle/Resources/config/routing/main.yaml'
 ```
 
-### Database and Content Types
-
-This bundle will add 1 table named: `novaez_siteaccess_factory_site_configuration` and will create 2 Content Types named
-`novaezsiteaccessfactory_home_page` and `novaezsiteaccessfactory_site_configuration`
-
-```bash
-bin/console novaezsiteaccessfactory:install --siteaccess=admin
-```
-
 ### Hook this eZ instance
 
 #### Add the SiteAccess Injector in your config
 
-Add the following file `app/config/env/siteaccess.php`
+Add the following file `app/config/env/siteaccesses.php`
 
 ```php
 <?php
@@ -83,7 +74,19 @@ novaezsiteaccessfactory_designlist: ['standard_standard']
 novaezsiteaccessfactory_languages: ['eng-GB']
 ```
 
-#### Cronjobs
+> Remember, your design list MUST exist
+
+### Database and Content Types
+
+This bundle will add 1 table named: `novaez_siteaccess_factory_site_configuration` and will create 2 Content Types named
+`novaezsiteaccessfactory_home_page` and `novaezsiteaccessfactory_site_configuration`
+
+```bash
+bin/console novaezsiteaccessfactory:install --siteaccess=admin
+composer run post-install-cmd
+```
+
+### Cronjobs
 
 For the system to work, you need to add a new cronjob that will be in charge to manage the `site_configuration` workflow.
 This is recommended to set it up to run every 30 min. 
