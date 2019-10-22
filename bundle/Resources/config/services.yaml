@@ -1,4 +1,5 @@
 parameters:
+    site_configuration_entity: Novactive\Bundle\eZSiteAccessFactoryBundle\Entity\SiteConfiguration
 
 services:
     _defaults:
@@ -91,3 +92,8 @@ services:
         factory: 'Novactive\Bundle\eZSiteAccessFactoryBundle\Menu\AdminBuilder:createSaveCancelMenu'
         tags:
             - { name: knp_menu.menu, alias: novaezsiteaccessfactory.menu.admin.save_cancel }
+
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Repository\SiteConfiguration:
+        arguments:
+            - '%site_configuration_entity%'
+        factory: ['@doctrine', 'getRepository']

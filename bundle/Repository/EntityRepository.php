@@ -20,12 +20,8 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-abstract class EntityRepository extends ServiceEntityRepository
+abstract class EntityRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, $this->getEntityClass());
-    }
 
     abstract protected function getAlias(): string;
 
