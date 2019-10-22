@@ -6,4 +6,5 @@ jQuery(function () {
         return false;
     });
     NovaeZSiteAccessFactoryEditFormModule.init(jQuery, $app);
+    NovaeZSiteaccessFactoryNormalizeModule.init(jQuery, $app);
 });
