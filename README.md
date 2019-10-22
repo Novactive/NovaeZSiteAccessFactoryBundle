@@ -1,9 +1,24 @@
 # Novactive eZ SiteAccess Factory Bundle
 
+[![Downloads](https://img.shields.io/packagist/dt/novactive/ezsiteaccessfactorybundle.svg?style=flat-square)](https://packagist.org/packages/novactive/ezseobundle)
+[![Latest version](https://img.shields.io/github/release/Novactive/NovaeZSiteAccessFactoryBundle.svg?style=flat-square)](https://github.com/Novactive/NovaeZSiteAccessFactoryBundle/releases)
+[![License](https://img.shields.io/packagist/l/novactive/ezsiteaccessfactorybundle.svg?style=flat-square)](LICENSE)
+
 Novactive eZ SiteAccess Factory Bundle is an eZPlatform bundle that will allow you to create SiteAccess (website) on 
 the fly on top of an existing eZ Platform instance.
 
-**NOTE**: This is currently in BETA but is pretty stable. Contributions are welcome.
+
+!!!!
+
+- **NOTE**: This is currently in BETA but is pretty stable.
+- **WE ARE LOOKING FOR FEEDBACK**: Don't hesite to create issue, ask questions, etc.
+
+- Contributions are welcome!
+
+Introduction video here: https://youtu.be/Xtyw_aWM0Gc
+
+!!!!
+
 
 ## Features
 

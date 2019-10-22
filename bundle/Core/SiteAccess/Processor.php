@@ -79,7 +79,7 @@ final class Processor
             'name' => $configuration->getName(),
             'siteaccessName' => $configuration->getSiteaccessName(),
             'adminEmail' => $configuration->getAdminEmail(),
-            'adminPassword' => 'Publish',
+            'adminPassword' => 'Publish12345',
             'lang' => $configuration->getPrioritizedLanguges()[0],
             'create_user' => false,
             'key' => "k{$configuration->getId()}",
