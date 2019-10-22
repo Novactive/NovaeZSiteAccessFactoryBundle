@@ -1,6 +1,3 @@
-parameters:
-    site_configuration_entity: Novactive\Bundle\eZSiteAccessFactoryBundle\Entity\SiteConfiguration
-
 services:
     _defaults:
         autowire: true
@@ -95,5 +92,5 @@ services:
 
     Novactive\Bundle\eZSiteAccessFactoryBundle\Repository\SiteConfiguration:
         arguments:
-            - '%site_configuration_entity%'
+            - 'Novactive\Bundle\eZSiteAccessFactoryBundle\Entity\SiteConfiguration'
         factory: ['@doctrine', 'getRepository']

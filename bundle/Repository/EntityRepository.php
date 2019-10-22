@@ -13,16 +13,14 @@ declare(strict_types=1);
 
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityRepository as BaseEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 
-abstract class EntityRepository extends \Doctrine\ORM\EntityRepository
+abstract class EntityRepository extends BaseEntityRepository
 {
-
     abstract protected function getAlias(): string;
 
     abstract protected function getEntityClass(): string;
