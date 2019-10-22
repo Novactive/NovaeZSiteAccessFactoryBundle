@@ -4,6 +4,7 @@
 
 * eZ Platform 2.x
 * PHP PHP 7.3
+* MariaDB 10.2 or MySQL 5.7+
 
 ## Installation steps
 
