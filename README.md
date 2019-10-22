@@ -1,5 +1,6 @@
 # Novactive eZ SiteAccess Factory Bundle
 
+[![Build Status](https://img.shields.io/travis/Novactive/NovaeZSiteAccessFactoryBundle.svg?style=flat-square&branch=master)](https://travis-ci.org/Novactive/NovaeZSiteAccessFactoryBundle)
 [![Downloads](https://img.shields.io/packagist/dt/novactive/ezsiteaccessfactorybundle.svg?style=flat-square)](https://packagist.org/packages/novactive/ezseobundle)
 [![Latest version](https://img.shields.io/github/release/Novactive/NovaeZSiteAccessFactoryBundle.svg?style=flat-square)](https://github.com/Novactive/NovaeZSiteAccessFactoryBundle/releases)
 [![License](https://img.shields.io/packagist/l/novactive/ezsiteaccessfactorybundle.svg?style=flat-square)](LICENSE)
