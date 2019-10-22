@@ -23,6 +23,7 @@ use Novactive\Bundle\eZSiteAccessFactoryBundle\Repository\SiteConfiguration as S
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Workflow\Registry;
@@ -43,14 +44,16 @@ class SiteConfigurationController extends Controller
         Request $request,
         EntityManagerInterface $entityManager,
         Registry $workflows,
-        ?SiteConfiguration $siteConfiguration = null
+        ?int $id = null
     ) {
-        if (null === $siteConfiguration) {
+        if (null === $id) {
             $siteConfiguration = new SiteConfiguration();
             $siteConfiguration->setType('standard');
             $siteConfiguration->setTheme('standard');
             $siteConfiguration->setPrioritizedLanguges(['eng-GB']);
             $siteConfiguration->setCreated(new DateTime());
+        } else {
+            $siteConfiguration = $this->retrieveOrNotFoundSiteConfiguration($entityManager, $id);
         }
         $workflow = $workflows->get($siteConfiguration);
         if (false === $workflow->can($siteConfiguration, 'edit')) {
@@ -83,15 +86,18 @@ class SiteConfigurationController extends Controller
      */
     public function transit(
         string $transition,
-        SiteConfiguration $siteConfiguration,
+        int $id,
         Registry $workflows,
         EntityManagerInterface $entityManager
     ): RedirectResponse {
+        $siteConfiguration = $this->retrieveOrNotFoundSiteConfiguration($entityManager, $id);
         $workflow = $workflows->get($siteConfiguration);
         if (false === $workflow->can($siteConfiguration, $transition)) {
             throw new AccessDeniedException('Not authorized to process this transition.');
         }
         $workflow->apply($siteConfiguration, $transition);
+
+        $entityManager->persist($siteConfiguration);
         $entityManager->flush();
 
         return new RedirectResponse(
@@ -103,10 +109,11 @@ class SiteConfigurationController extends Controller
      * @Route("/duplicate/{id}", name="novaezsiteaccessfactoryadmin_siteconfiguration_duplicate")
      */
     public function duplicate(
-        SiteConfiguration $siteConfiguration,
+        int $id,
         EntityManagerInterface $entityManager,
         SiteConfigurationService $service
     ): RedirectResponse {
+        $siteConfiguration = $this->retrieveOrNotFoundSiteConfiguration($entityManager, $id);
         $new = $service->duplicate($siteConfiguration);
         $new->setUser($this->getUser());
         $entityManager->persist($new);
@@ -121,10 +128,11 @@ class SiteConfigurationController extends Controller
      * @Route("/addtranslation/{id}", name="novaezsiteaccessfactoryadmin_siteconfiguration_addtranslation")
      */
     public function addTranslation(
-        SiteConfiguration $siteConfiguration,
+        int $id,
         EntityManagerInterface $entityManager,
         SiteConfigurationService $service
     ): RedirectResponse {
+        $siteConfiguration = $this->retrieveOrNotFoundSiteConfiguration($entityManager, $id);
         if ($siteConfiguration->getRootLocationId() > 0) {
             $new = $service->duplicate($siteConfiguration, 'translated');
             $new->setUser($this->getUser());
@@ -158,5 +166,21 @@ class SiteConfigurationController extends Controller
             'statuses' => $repository->fetchStatusesData($filters),
             'currentStatus' => $status,
         ];
+    }
+
+    /**
+     * We need that function as we don't want to use the Generic Entity Manager
+     * Used by default when using Param Converter.
+     */
+    private function retrieveOrNotFoundSiteConfiguration(
+        EntityManagerInterface $entityManager,
+        int $id
+    ): SiteConfiguration {
+        $siteConfiguration = $entityManager->getRepository(SiteConfiguration::class)->findOneById($id);
+        if (!$siteConfiguration instanceof SiteConfiguration) {
+            throw new NotFoundHttpException();
+        }
+
+        return $siteConfiguration;
     }
 }
