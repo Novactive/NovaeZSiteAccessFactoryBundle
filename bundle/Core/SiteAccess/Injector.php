@@ -75,6 +75,8 @@ final class Injector
             $system['cache_service_name'] = $config->cache_service_name;
             $system['languages'] = $config->languages;
             $system['content']['tree_root']['location_id'] = $config->root_location_id ?? 2;
+            $system['repository'] = $config->repository;
+            $system['var_dir']    = $config->var_dir;
             $siteAccess['ezpublish']['system'][$key] = $system;
 
             $this->load($siteAccess, $key);

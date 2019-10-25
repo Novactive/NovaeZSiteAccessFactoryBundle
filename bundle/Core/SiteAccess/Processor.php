@@ -23,6 +23,7 @@ use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose\WrapperFactoryAware;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Entity\SiteConfiguration;
 use Symfony\Component\Filesystem\Filesystem;
 use Twig\Environment;
+use Doctrine\ORM\EntityManagerInterface;
 
 final class Processor
 {
@@ -40,10 +41,16 @@ final class Processor
      */
     private $migrationService;
 
-    public function __construct(Environment $twig, MigrationService $migrationService)
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(Environment $twig, MigrationService $migrationService, EntityManagerInterface $entityManager )
     {
         $this->twig = $twig;
         $this->migrationService = $migrationService;
+        $this->entityManager    = $entityManager;
     }
 
     public function __invoke(SiteConfiguration $configuration)
@@ -62,6 +69,8 @@ final class Processor
             'groups' => $configuration->getGroups(),
             'page_builder' => $configuration->getPageBuilderGroup(),
             'root_location_id' => $rootLocation->id,
+            'repository' => $this->entityManager->getConnection()->getDatabase(),
+            'var_dir'    => 'var/'.$this->entityManager->getConnection()->getDatabase(),
         ];
 
         $fs = new Filesystem();
