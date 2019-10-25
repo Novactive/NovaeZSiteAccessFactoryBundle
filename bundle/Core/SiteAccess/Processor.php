@@ -46,7 +46,7 @@ final class Processor
      */
     private $entityManager;
 
-    public function __construct(Environment $twig, MigrationService $migrationService, EntityManagerInterface $entityManager )
+    public function __construct(Environment $twig, MigrationService $migrationService, EntityManagerInterface $entityManager)
     {
         $this->twig = $twig;
         $this->migrationService = $migrationService;
