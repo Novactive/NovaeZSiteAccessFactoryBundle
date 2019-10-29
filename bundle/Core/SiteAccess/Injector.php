@@ -96,6 +96,11 @@ final class Injector
         $siteAccessConfigs['ezpublish']['siteaccess']['list'] = $list;
         $siteAccessConfigs['ezpublish']['siteaccess']['groups'] = $groups;
 
+        // Match site by URI
+        foreach ($list as $key => $value) {
+            $siteAccessConfigs['ezpublish']['siteaccess']['match']['Map\URI'][$value] = $value;
+        }
+
         if ($this->isEnterprise) {
             foreach ($pageBuilder as $adminKey => $keys) {
                 foreach ($keys as $key) {
