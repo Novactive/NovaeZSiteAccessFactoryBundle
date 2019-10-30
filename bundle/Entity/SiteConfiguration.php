@@ -217,11 +217,10 @@ class SiteConfiguration implements Compose\UserLinkedInterface, Compose\RootLoca
     {
         $this->setLastStatus(self::STATUS_DRAFT);
 
-        // for the PoC that will stay here hardcoded
         $this->cachePool = '%cache_pool%';
         $this->prioritizedLanguges = ['eng-GB'];
-        $this->groups = ['site_group'];
         $this->pageBuilderGroup = ['admin_group'];
+        $this->groups = [];
     }
 
     public function getId(): ?int

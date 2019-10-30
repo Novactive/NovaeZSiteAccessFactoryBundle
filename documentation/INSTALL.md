@@ -73,9 +73,11 @@ novaezsiteaccessfactory_siteaccess_directory: YOURPATH
 novaezsiteaccessfactory_siteaccess_cache_directory: YOURPATH/cache
 novaezsiteaccessfactory_designlist: ['standard_standard']
 novaezsiteaccessfactory_languages: ['eng-GB']
+novaezsiteaccessfactory_default_siteaccess_groups: ['site_groupe1', 'site_group2', '...']
 ```
 
 > Remember, your design list MUST exist
+> novaezsiteaccessfactory_default_siteaccess_group : Put the list of group sites for which you want to add siteaccess created.
 
 ### Database and Content Types
 
