@@ -11,6 +11,8 @@ services:
     Novactive\Bundle\eZSiteAccessFactoryBundle\Controller\:
         resource: '../../Controller'
         tags: ['controller.service_arguments']
+        bind:
+            $siteAccessDefaultGroupList: "%novaezsiteaccessfactory_default_siteaccess_groups%"
 
     # Command
     Novactive\Bundle\eZSiteAccessFactoryBundle\Command\:

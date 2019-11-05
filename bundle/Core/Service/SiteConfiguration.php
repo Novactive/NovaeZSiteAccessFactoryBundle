@@ -51,6 +51,7 @@ final class SiteConfiguration
         $new->setTheme($configuration->getTheme());
         $new->setAdminEmail($configuration->getAdminEmail());
         $new->setCreated(new Datetime());
+        $new->setGroups($configuration->getGroups());
 
         return $new;
     }

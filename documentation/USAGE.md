@@ -23,4 +23,5 @@ There are 4 configuration parameters:
 - **novaezsiteaccessfactory_siteaccess_cache_directory**: A path, writable and backuped to save the Site Access configuration cached in JSON.
 - **novaezsiteaccessfactory_designlist**: The list of available Design in your project (or that you want to enable for the factory).
 - **novaezsiteaccessfactory_languages**: The list of available Languages in your project (or that you want to enable for the factory).
+- **novaezsiteaccessfactory_default_siteaccess_groups**: The list of group sites for which you want to add siteaccess created.
 

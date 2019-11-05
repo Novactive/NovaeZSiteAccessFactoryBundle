@@ -34,6 +34,16 @@ use Symfony\Component\Workflow\Registry;
 class SiteConfigurationController extends Controller
 {
     /**
+     * @var array
+     */
+    private $siteAccessDefaultGroupList;
+
+    public function __construct(array $siteAccessDefaultGroupList = [])
+    {
+        $this->siteAccessDefaultGroupList = $siteAccessDefaultGroupList;
+    }
+
+    /**
      * @Route("/edit/{id}", name="novaezsiteaccessfactoryadmin_siteconfiguration_edit")
      * @Route("/create", name="novaezsiteaccessfactoryadmin_siteconfiguration_create")
      * @Template("@ezdesign/site_configuration/edit.html.twig")
@@ -52,6 +62,7 @@ class SiteConfigurationController extends Controller
             $siteConfiguration->setTheme('standard');
             $siteConfiguration->setPrioritizedLanguges(['eng-GB']);
             $siteConfiguration->setCreated(new DateTime());
+            $siteConfiguration->setGroups($this->siteAccessDefaultGroupList);
         } else {
             $siteConfiguration = $this->retrieveOrNotFoundSiteConfiguration($entityManager, $id);
         }
