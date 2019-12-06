@@ -73,7 +73,7 @@ novaezsiteaccessfactory_siteaccess_directory: YOURPATH
 novaezsiteaccessfactory_siteaccess_cache_directory: YOURPATH/cache
 novaezsiteaccessfactory_designlist: ['standard_standard']
 novaezsiteaccessfactory_languages: ['eng-GB']
-novaezsiteaccessfactory_default_siteaccess_groups: ['site_groupe1', 'site_group2', '...']
+novaezsiteaccessfactory_default_siteaccess_groups: ['site_group1', 'site_group2', '...']
 ```
 
 > Remember, your design list MUST exist
@@ -83,8 +83,8 @@ novaezsiteaccessfactory_default_siteaccess_groups: ['site_groupe1', 'site_group2
 
 If you use MariaDB, the version of MariaDB must be at least version 10.2
 
-This bundle will add 1 table named: `novaez_siteaccess_factory_site_configuration` and will create 2 Content Types named
-`novaezsiteaccessfactory_home_page` and `novaezsiteaccessfactory_site_configuration`
+This bundle will add 1 table named: `novaez_siteaccess_factory_site_configuration` and will create 3 Content Types named
+`novaezsiteaccessfactory_home_page`, `novaezsiteaccessfactory_home_page_vide` and `novaezsiteaccessfactory_site_configuration`
 
 ```bash
 bin/console novaezsiteaccessfactory:install --siteaccess=admin

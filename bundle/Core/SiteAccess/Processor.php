@@ -104,7 +104,13 @@ final class Processor
             $data['groupIds'] = null;
         }
 
-        $content = $this->twig->render('@ezdesign/site_configuration/siteaccess.yaml.twig', $data);
+        // Check type content type (novaezsiteaccessfactory_home_page_vide or novaezsiteaccessfactory_home_page)
+        if ($configuration->getModele() == 1) {
+            $content = $this->twig->render('@ezdesign/site_configuration/siteaccess_vierge.yaml.twig', $data);
+        } else {
+            $content = $this->twig->render('@ezdesign/site_configuration/siteaccess.yaml.twig', $data);
+        }
+
         $fs = new Filesystem();
         $path = "{$this->siteAccessCacheDirectory}/".time()."{$configuration->getSiteaccessName()}_data.yaml";
         $fs->dumpFile($path, $content);

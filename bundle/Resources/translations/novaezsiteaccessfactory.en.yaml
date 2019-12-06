@@ -9,6 +9,8 @@ site.configuration.form.languages: "Languages"
 site.configuration.form.type: "Type"
 site.configuration.form.theme: "Theme"
 site.configuration.form.admin.email: "Admin Email"
+site.configuration.form.model.one: "Empty Content Type (allows you to put your own HTML)"
+site.configuration.form.model.two: "Classic Content Type with ability to contribute content from the BO"
 
 site.configuration.list.status: "Status"
 site.configuration.management: "Site Configuration Management"

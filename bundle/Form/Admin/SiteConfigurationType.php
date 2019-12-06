@@ -94,6 +94,16 @@ class SiteConfigurationType extends AbstractType
                 ]
             )
             ->add(
+                'modele',
+                ChoiceType::class,
+                [
+                    'choices' => [
+                        'site.configuration.form.model.one'  => true,
+                        'site.configuration.form.model.two' => false
+                    ],
+                ]
+            )
+            ->add(
                 'prioritizedLanguges',
                 TextType::class,
                 [

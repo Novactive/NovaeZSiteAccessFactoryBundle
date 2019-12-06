@@ -124,3 +124,45 @@
             disable-translation: false
             category: 'content'
             position: 70
+
+# Home page Vide
+-
+    type: content_type
+    mode: create
+    content_type_group: 'Content'
+    identifier: novaezsiteaccessfactory_home_page_vide
+    name:
+        eng-GB: "Home Page"
+    description:
+        eng-GB: "An Homepage"
+    name_pattern: '<name>'
+    url_name_pattern: '<name>'
+    is_container: true
+    lang: eng-GB
+    attributes:
+        -
+            identifier: name
+            type: ezstring
+            name:
+                eng-GB: "Name"
+            description:
+                eng-GB: ""
+            required: true
+            searchable: false
+            info-collector: false
+            disable-translation: false
+            category: 'content'
+            position: 10
+        -
+            identifier: content_html
+            type: eztext
+            name:
+                eng-GB: "Content HTML"
+            description:
+                eng-GB: ""
+            required: false
+            searchable: false
+            info-collector: false
+            disable-translation: true
+            category: 'content'
+            position: 20
