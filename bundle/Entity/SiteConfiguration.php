@@ -360,12 +360,12 @@ class SiteConfiguration implements Compose\UserLinkedInterface, Compose\RootLoca
 
     public function getTemplate(): int
     {
-        return (int) $this->modele;
+        return (int) $this->template;
     }
 
-    public function setTemplate(int $modele): self
+    public function setTemplate(int $template): self
     {
-        $this->modele = $modele;
+        $this->template = $template;
 
         return $this;
     }
