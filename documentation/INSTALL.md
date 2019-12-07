@@ -84,7 +84,7 @@ novaezsiteaccessfactory_default_siteaccess_groups: ['site_group1', 'site_group2'
 If you use MariaDB, the version of MariaDB must be at least version 10.2
 
 This bundle will add 1 table named: `novaez_siteaccess_factory_site_configuration` and will create 3 Content Types named
-`novaezsiteaccessfactory_home_page`, `novaezsiteaccessfactory_home_page_vide` and `novaezsiteaccessfactory_site_configuration`
+`novaezsiteaccessfactory_home_page`, `novaezsiteaccessfactory_static_home_page` and `novaezsiteaccessfactory_site_configuration`
 
 ```bash
 bin/console novaezsiteaccessfactory:install --siteaccess=admin

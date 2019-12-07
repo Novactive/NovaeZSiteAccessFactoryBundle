@@ -7,7 +7,7 @@
 -
     type: content
     mode: create
-    content_type: 'novaezsiteaccessfactory_home_page_vide'
+    content_type: 'novaezsiteaccessfactory_static_home_page'
     parent_location: 2
     attributes:
         name: {{ name }}
@@ -15,19 +15,19 @@
     location_remote_id: "novaezsiteaccessfactory-sa-top-location-{{ siteaccessName }}"
     references:
         -
-            identifier: '{{ key }}_home_page_vide_location_id'
+            identifier: '{{ key }}_static_home_page_location_id'
             attribute: location_id
         -
-            identifier: '{{ key }}_home_page_vide_content_id'
+            identifier: '{{ key }}_static_home_page_content_id'
             attribute: content_id
         -
-            identifier: '{{ key }}_home_page_vide_subtree'
+            identifier: '{{ key }}_static_home_page_subtree'
             attribute: path
 -
     type: content
     mode: create
     content_type: 'novaezsiteaccessfactory_site_configuration'
-    parent_location: 'reference:{{ key }}_home_page_vide_location_id'
+    parent_location: 'reference:{{ key }}_static_home_page_location_id'
     priority: 999
     attributes:
         name: "Configuration"
@@ -42,7 +42,7 @@
     type: content
     mode: update
     match:
-        content_id: 'reference:{{ key }}_home_page_vide_content_id'
+        content_id: 'reference:{{ key }}_static_home_page_content_id'
     lang: {{ lang }}
     attributes:
         name: "Home Page {{ name }}"
@@ -113,7 +113,7 @@
                 -
                     identifier: Subtree
 {% if rootLocationPath is null %}
-                    values: ['reference:{{ key }}_home_page_vide_subtree']
+                    values: ['reference:{{ key }}_static_home_page_subtree']
 {% else %}
                     values: "{{ rootLocationPath }}"
 {% endif %}

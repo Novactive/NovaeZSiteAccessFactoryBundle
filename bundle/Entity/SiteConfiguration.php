@@ -216,9 +216,9 @@ class SiteConfiguration implements Compose\UserLinkedInterface, Compose\RootLoca
     /**
      * @var
      *
-     * @ORM\Column(name="SC_modele", type="integer")
+     * @ORM\Column(name="SC_template", type="integer")
      */
-    private $modele;
+    private $template;
 
     public function __construct()
     {
@@ -358,12 +358,12 @@ class SiteConfiguration implements Compose\UserLinkedInterface, Compose\RootLoca
         return $this;
     }
 
-    public function getModele(): int
+    public function getTemplate(): int
     {
         return (int) $this->modele;
     }
 
-    public function setModele(int $modele): self
+    public function setTemplate(int $modele): self
     {
         $this->modele = $modele;
 

@@ -94,7 +94,7 @@ class SiteConfigurationType extends AbstractType
                 ]
             )
             ->add(
-                'modele',
+                'template',
                 ChoiceType::class,
                 [
                     'choices' => [
