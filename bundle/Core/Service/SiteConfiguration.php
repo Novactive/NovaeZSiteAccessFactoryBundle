@@ -52,6 +52,7 @@ final class SiteConfiguration
         $new->setAdminEmail($configuration->getAdminEmail());
         $new->setCreated(new Datetime());
         $new->setGroups($configuration->getGroups());
+        $new->setTemplate($configuration->getTemplate());
 
         return $new;
     }

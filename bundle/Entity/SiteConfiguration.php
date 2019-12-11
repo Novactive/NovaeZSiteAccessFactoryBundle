@@ -213,6 +213,13 @@ class SiteConfiguration implements Compose\UserLinkedInterface, Compose\RootLoca
      */
     private $adminEmail;
 
+    /**
+     * @var
+     *
+     * @ORM\Column(name="SC_template", type="integer")
+     */
+    private $template;
+
     public function __construct()
     {
         $this->setLastStatus(self::STATUS_DRAFT);
@@ -347,6 +354,18 @@ class SiteConfiguration implements Compose\UserLinkedInterface, Compose\RootLoca
     public function setAdminEmail(?string $adminEmail): self
     {
         $this->adminEmail = $adminEmail;
+
+        return $this;
+    }
+
+    public function getTemplate(): int
+    {
+        return (int) $this->template;
+    }
+
+    public function setTemplate(int $template): self
+    {
+        $this->template = $template;
 
         return $this;
     }

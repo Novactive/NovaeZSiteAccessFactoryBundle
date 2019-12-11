@@ -8,6 +8,7 @@ For now this bundle allows you to configure some properties of a Site Access.
    - Select a **type** and a **theme**, those 2 will be joined with `_` to define the `design`
    - Example: `event` `dark` will setup the design `event_dark` for this Site Access. 
 - **languages**: you can setup the prioritize list of languages
+- **modele**: select content type for home page.
 
 > The list of Design must be available.
 
