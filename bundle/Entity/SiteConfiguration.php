@@ -146,7 +146,7 @@ class SiteConfiguration implements Compose\UserLinkedInterface, Compose\RootLoca
     /**
      * @var string
      *
-     * @ORM\Column(name="SC_siteaccess_name", type="string",length=255, nullable=false, unique=true)
+     * @ORM\Column(name="SC_siteaccess_name", type="string",length=30, nullable=false, unique=true)
      * @Assert\NotBlank
      */
     private $siteaccessName;
