@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Validator\Constraints;
 
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose\EzRepositoryAware;
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class LanguageValidator extends ConstraintValidator
 {

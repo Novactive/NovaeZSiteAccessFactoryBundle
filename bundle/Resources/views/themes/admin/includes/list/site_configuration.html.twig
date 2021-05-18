@@ -59,11 +59,11 @@
             <td>
                 {% if item.root is not null %}
                     <p>Root Location:
-                        <a href="{{ path(item.root.location, {siteaccess: 'admin'}) }}" target="_blank">{{ ez_content_name(item.root.content) }}</a>
+                        <a href="{{ ez_path(item.root.location, {siteaccess: 'admin'}) }}" target="_blank">{{ ez_content_name(item.root.content) }}</a>
                     </p>
                     <p>
                         Configuration:
-                        <a href="{{ path(item.configuration.location, {siteaccess: 'admin'}) }}" target="_blank">{{ ez_content_name(item.configuration.content) }}</a>
+                        <a href="{{ ez_path(item.configuration.location, {siteaccess: 'admin'}) }}" target="_blank">{{ ez_content_name(item.configuration.content) }}</a>
                     </p>
                 {% endif %}
             </td>

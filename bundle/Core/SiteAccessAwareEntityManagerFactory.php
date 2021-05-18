@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Core;
 
 use Doctrine\Bundle\DoctrineBundle\Mapping\ContainerEntityListenerResolver;
-use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry as Registry;
 use eZ\Bundle\EzPublishCoreBundle\ApiLoader\RepositoryConfigurationProvider;
 
 final class SiteAccessAwareEntityManagerFactory

@@ -1,4 +1,4 @@
-var NovaeZSiteAccessFactoryEditFormModule = function () {
+export const NovaeZSiteAccessFactoryEditFormModule = function () {
     function _init ($, $app) {
 
         var $form = $('form[novaezsiteaccessfactory]', $app);

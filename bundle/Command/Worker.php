@@ -48,6 +48,6 @@ final class Worker extends Command
             $command->run($commandInput, $output);
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

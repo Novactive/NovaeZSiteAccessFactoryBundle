@@ -69,24 +69,24 @@ final class CreateUserLoginPermissionCommand extends Command
                 $roleService->assignRoleToUserGroup($roleDraft, $userService->loadUserGroup($group->id));
                 $io->success('Done.');
 
-                return 0;
+                return Command::SUCCESS;
             }
         } catch (Exception $e) {
             // if it is not working we don't kill the process, that is fine it can be done manually
             $io->error($e->getMessage());
 
-            return 1;
+            return Command::FAILURE;
         }
 
         $io->comment('Nothing was done, it was already done.');
 
-        return 0;
+        return Command::SUCCESS;
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $input; // phpmd trick
-        $output; // phpmd trick
+        // phpmd trick
+        // phpmd trick
 
         $permissionResolver = $this->repository->getPermissionResolver();
         $user = $this->repository->getUserService()->loadUserByLogin('admin');

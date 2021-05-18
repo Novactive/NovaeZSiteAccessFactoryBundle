@@ -22,19 +22,16 @@ list:
 	@echo "${RED}==============================${RESTORE}"
 
 .PHONY: installez
-installez: ## Install eZ as the local project
+installez: intall ## Install eZ as the local project
 	@docker run -d -p 3366:3306 --name ezdbnovaezsafactorycontainer -e MYSQL_ROOT_PASSWORD=ezplatform mariadb:10.2
-	@composer create-project ezsystems/ezplatform --prefer-dist --no-progress --no-interaction --no-scripts $(EZ_DIR)
+	@composer create-project ezsystems/ezplatform-ee --prefer-dist --no-progress --no-interaction --no-scripts $(EZ_DIR)
 	@curl -o tests/provisioning/wrap.php https://raw.githubusercontent.com/Plopix/symfony-bundle-app-wrapper/master/wrap-bundle.php
 	@WRAP_APP_DIR=./ezplatform WRAP_BUNDLE_DIR=./ php tests/provisioning/wrap.php
 	@rm tests/provisioning/wrap.php
-	@echo "Please set up this way:"
-	@echo "\tenv(DATABASE_HOST)     -> 127.0.0.1"
-	@echo "\tenv(DATABASE_PORT)     -> 3366"
-	@echo "\tenv(DATABASE_PASSWORD) -> ezplatform"
-	@cd $(EZ_DIR) && COMPOSER_MEMORY_LIMIT=-1 composer update --lock
-	@cd $(EZ_DIR) && bin/console ezplatform:install clean
-	@cd $(EZ_DIR) && bin/console cache:clear
+	@echo "DATABASE_URL=mysql://root:ezplatform@127.0.0.1:3366/ezplatform" >>  $(EZ_DIR)/.env.local
+	@cd $(EZ_DIR) && COMPOSER_MEMORY_LIMIT=-1 composer update
+	@cd $(EZ_DIR) && $(COMPOSER) ezplatform-install
+	@cd $(EZ_DIR) && $(CONSOLE) cache:clear
 
 .PHONY: serveez
 serveez: stopez ## Clear the cache and start the web server
@@ -46,8 +43,8 @@ serveez: stopez ## Clear the cache and start the web server
 
 .PHONY: stopez
 stopez: ## Stop the web server if it is running
-	@cd $(EZ_DIR) && $(SYMFONY) local:server:stop
-	@docker stop ezdbnovaezsafactorycontainer
+	@-cd $(EZ_DIR) && $(SYMFONY) local:server:stop
+	@-docker stop ezdbnovaezsafactorycontainer
 
 .PHONY: codeclean
 codeclean: ## Coding Standard checks
@@ -71,10 +68,12 @@ resetdb:
 	@cd $(EZ_DIR) && bin/console novaezsiteaccessfactory:install --siteaccess=admin
 
 .PHONY: clean
-clean: ## Removes the vendors, and caches
-	rm -f .php_cs.cache
-	rm -rf vendor
-	rm -f composer.lock
+clean: stopez ## Removes the vendors, and caches
+	@-rm -f .php_cs.cache
+	@-rm -rf vendor
+	@-rm -rf ezplatform
+	@-rm  node_modules
+	@-docker rm ezdbnovaezsafactorycontainer
 
 .PHONY: docs
 docs: ## Generate the documentation files and images

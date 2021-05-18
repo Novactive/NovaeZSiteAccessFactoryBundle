@@ -48,20 +48,13 @@ _novaezsiteaccessfactory_routes:
 
 #### Add the SiteAccess Injector in your config
 
-Add the following file `app/config/env/siteaccesses.php`
+Add the following file `config/packages/siteaccesses.php`
 
 ```php
 <?php
 try {
     (new Novactive\Bundle\eZSiteAccessFactoryBundle\Core\SiteAccess\Injector($container))();
 } catch (\Exception $e) {}
-```
-
-And don't forget to include it at the top of your `app/config/ezplatform.yml`
-
-```yaml
-imports:
-    - { resource: env/siteaccesses.php }
 ```
 
 #### Setup a writable and backuped folder for siteaccesses and cache

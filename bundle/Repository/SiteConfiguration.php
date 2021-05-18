@@ -45,6 +45,7 @@ class SiteConfiguration extends EntityRepository
     {
         unset($filters['status']);
         $total = 0;
+        $statuses = [];
         foreach (SiteConfigurationEntity::STATUSES as $status) {
             $statuses[$status] = $this->countByFilters($filters + ['status' => $status]);
 

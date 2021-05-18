@@ -38,11 +38,6 @@ class NovaeZSiteAccessFactoryExtension extends Extension implements PrependExten
         $loader->load('services.yaml');
         $loader->load('ezadminui.yaml');
         $loader->load('listeners.yaml');
-
-        // Enable this bundle for Twig
-        $asseticBundles = $container->getParameter('assetic.bundles');
-        $asseticBundles[] = 'NovaeZSiteAccessFactoryBundle';
-        $container->setParameter('assetic.bundles', $asseticBundles);
     }
 
     public function prepend(ContainerBuilder $container): void

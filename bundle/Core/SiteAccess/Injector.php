@@ -92,6 +92,7 @@ final class Injector
                 }
             }
         }
+        $siteAccessConfigs = [];
 
         $siteAccessConfigs['ezpublish']['siteaccess']['list'] = $list;
         $siteAccessConfigs['ezpublish']['siteaccess']['groups'] = $groups;
