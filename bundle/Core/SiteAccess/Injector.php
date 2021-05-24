@@ -75,7 +75,7 @@ final class Injector
             $system['cache_service_name'] = $config->cache_service_name;
             $system['languages'] = $config->languages;
             $system['content']['tree_root']['location_id'] = $config->root_location_id ?? 2;
-            $siteAccess['ezpublish']['system'][$key] = $system;
+            $siteAccess['ezplatform']['system'][$key] = $system;
 
             $this->load($siteAccess, $key);
             $list[] = $key;
@@ -92,19 +92,20 @@ final class Injector
                 }
             }
         }
+        $siteAccessConfigs = [];
 
-        $siteAccessConfigs['ezpublish']['siteaccess']['list'] = $list;
-        $siteAccessConfigs['ezpublish']['siteaccess']['groups'] = $groups;
+        $siteAccessConfigs['ezplatform']['siteaccess']['list'] = $list;
+        $siteAccessConfigs['ezplatform']['siteaccess']['groups'] = $groups;
 
         // Match site by URI
         foreach ($list as $key => $value) {
-            $siteAccessConfigs['ezpublish']['siteaccess']['match']['Map\URI'][$value] = $value;
+            $siteAccessConfigs['ezplatform']['siteaccess']['match']['Map\URI'][$value] = $value;
         }
 
         if ($this->isEnterprise) {
             foreach ($pageBuilder as $adminKey => $keys) {
                 foreach ($keys as $key) {
-                    $siteAccessConfigs['ezpublish']['system'][$adminKey]['page_builder']['siteaccess_list'][] = $key;
+                    $siteAccessConfigs['ezplatform']['system'][$adminKey]['page_builder']['siteaccess_list'][] = $key;
                 }
             }
         }

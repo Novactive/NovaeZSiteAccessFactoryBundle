@@ -79,7 +79,7 @@
     mode: create
     first_name: "Admin"
     last_name: {{ name }}
-    username: {{ adminEmail }}
+    username: {{ adminEmail|replace({'@':'-'}) }}
     email: {{ adminEmail }}
     password: {{ adminPassword }}
     lang: {{ lang }}

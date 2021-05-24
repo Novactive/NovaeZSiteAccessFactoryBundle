@@ -1,3 +1,5 @@
+import { NovaeZSiteAccessFactoryEditFormModule } from "./modules/editForms";
+
 jQuery(function () {
     "use strict";
     var $ = jQuery;
@@ -6,5 +8,4 @@ jQuery(function () {
         return false;
     });
     NovaeZSiteAccessFactoryEditFormModule.init(jQuery, $app);
-    NovaeZSiteaccessFactoryNormalizeModule.init(jQuery, $app);
 });

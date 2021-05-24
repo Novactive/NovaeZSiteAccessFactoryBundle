@@ -54,7 +54,7 @@ class InstallCommand extends Command
             ->setDescription('Install what necessary in the DB.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Update the Database with Custom Novactive eZ Site Access Factory Table.');
@@ -81,5 +81,7 @@ class InstallCommand extends Command
         }
 
         $io->success('Done.');
+
+        return Command::SUCCESS;
     }
 }

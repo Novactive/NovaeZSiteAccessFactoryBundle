@@ -89,7 +89,7 @@ final class SiteConfigurationTransitCommand extends Command
         if (!\array_key_exists($transition, $mapStatus)) {
             $io->error("Transition {$transition} is not allowed to be applied through this command.");
 
-            return 1;
+            return Command::FAILURE;
         }
 
         $requiredState = $mapStatus[$transition];
@@ -122,14 +122,17 @@ final class SiteConfigurationTransitCommand extends Command
 
         $io->success('Done.');
 
-        return 0;
+        return Command::SUCCESS;
     }
 
     private function givePermissions(OutputInterface $output, string $siteAccessIdentifier): void
     {
         $output->write('Create Login Permissions in a new Thread...');
         $process = new Process(
-            "bin/console novaezsiteaccessfactory:create:userlogin:permissions {$siteAccessIdentifier}",
+            [
+                'bin/console', 'novaezsiteaccessfactory:create:userlogin:permissions',
+                $siteAccessIdentifier,
+            ],
             $this->rootDir
         );
         try {
@@ -161,8 +164,8 @@ final class SiteConfigurationTransitCommand extends Command
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $input; // phpmd trick
-        $output; // phpmd trick
+        // phpmd trick
+        // phpmd trick
 
         $permissionResolver = $this->repository->getPermissionResolver();
         $user = $this->repository->getUserService()->loadUserByLogin('admin');

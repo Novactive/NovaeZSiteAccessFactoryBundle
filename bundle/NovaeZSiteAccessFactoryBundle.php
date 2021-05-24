@@ -26,13 +26,12 @@ class NovaeZSiteAccessFactoryBundle extends Bundle
 
             if (null !== $extension) {
                 if (!$extension instanceof ExtensionInterface) {
-                    throw new LogicException(
-                        sprintf(
-                            'Extension %s must implement %s.',
-                            \get_class($extension),
-                            ExtensionInterface::class
-                        )
+                    $message = sprintf(
+                        'Extension %s must implement %s.',
+                        \get_class($extension),
+                        ExtensionInterface::class
                     );
+                    throw new LogicException($message);
                 }
                 $this->extension = $extension;
             } else {

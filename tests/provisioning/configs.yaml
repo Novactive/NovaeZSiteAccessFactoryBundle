@@ -1,0 +1,9 @@
+nova_ezsiteaccess_factory:
+
+
+parameters:
+    novaezsiteaccessfactory_siteaccess_directory: siteregistry
+    novaezsiteaccessfactory_siteaccess_cache_directory: siteregistry/cache
+    novaezsiteaccessfactory_designlist: [ 'standard_standard' ]
+    novaezsiteaccessfactory_languages: [ 'eng-GB' ]
+    novaezsiteaccessfactory_default_siteaccess_groups: [ 'site_groupe1', 'site_group2' ]

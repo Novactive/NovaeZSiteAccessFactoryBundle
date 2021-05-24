@@ -15,7 +15,7 @@ namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class AdminBuilder
 {

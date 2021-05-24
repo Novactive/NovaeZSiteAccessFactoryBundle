@@ -1,6 +1,1 @@
-{% javascripts
-    'bundles/novaezsiteaccessfactory/js/modules/*.js'
-    'bundles/novaezsiteaccessfactory/js/novaezsiteaccessfactory.js'
-%}
-    <script src="{{ asset_url }}"></script>
-{% endjavascripts %}
+{{ encore_entry_script_tags('nova_ezsiteaccessfactory', null, 'ezplatform') }}

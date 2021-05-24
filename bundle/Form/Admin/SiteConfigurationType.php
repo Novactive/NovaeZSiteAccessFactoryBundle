@@ -98,8 +98,8 @@ class SiteConfigurationType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => [
-                        'site.configuration.form.model.one'  => true,
-                        'site.configuration.form.model.two' => false
+                        'site.configuration.form.model.one' => true,
+                        'site.configuration.form.model.two' => false,
                     ],
                 ]
             )

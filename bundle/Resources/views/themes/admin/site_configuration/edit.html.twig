@@ -1,6 +1,6 @@
 {% extends '@ezdesign/layout/pagelayout.html.twig' %}
 
-{% form_theme form with ['@EzPlatformAdminUi/form_fields.html.twig', _self ] %}
+{% form_theme form with ['@ezdesign/content/form_fields.html.twig', _self ] %}
 
 {% block content %}
     {{ form_start(form, {attr: {class:'col-11', novaezsiteaccessfactory:'mainform'}}) }}
@@ -23,5 +23,5 @@
 {% endblock %}
 
 {% block rightbar %}
-    {{ knp_menu_render('novaezsiteaccessfactory.menu.admin.save_cancel', {'template': '@EzPlatformAdminUi/parts/menu/sidebar_right.html.twig'}) }}
+    {{ knp_menu_render('novaezsiteaccessfactory.menu.admin.save_cancel', {'template': '@ezdesign/ui/menu/sidebar_right.html.twig'}) }}
 {% endblock %}

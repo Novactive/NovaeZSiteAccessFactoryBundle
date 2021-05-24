@@ -5,8 +5,8 @@ services:
         public: false
 
     Novactive\Bundle\eZSiteAccessFactoryBundle\Listener\EzUserLink:
-        tags: ['doctrine.orm.entity_listener']
+        tags: [ 'doctrine.orm.entity_listener' ]
 
     Novactive\Bundle\eZSiteAccessFactoryBundle\Listener\EzRootLocationLink:
-        tags: ['doctrine.orm.entity_listener']
+        tags: [ 'doctrine.orm.entity_listener' ]
 
