@@ -22,7 +22,7 @@ list:
 	@echo "${RED}==============================${RESTORE}"
 
 .PHONY: installez
-installez: intall ## Install eZ as the local project
+installez: install ## Install eZ as the local project
 	@docker run -d -p 3366:3306 --name ezdbnovaezsafactorycontainer -e MYSQL_ROOT_PASSWORD=ezplatform mariadb:10.2
 	@composer create-project ezsystems/ezplatform-ee --prefer-dist --no-progress --no-interaction --no-scripts $(EZ_DIR)
 	@curl -o tests/provisioning/wrap.php https://raw.githubusercontent.com/Plopix/symfony-bundle-app-wrapper/master/wrap-bundle.php
@@ -31,7 +31,7 @@ installez: intall ## Install eZ as the local project
 	@echo "DATABASE_URL=mysql://root:ezplatform@127.0.0.1:3366/ezplatform" >>  $(EZ_DIR)/.env.local
 	@cd $(EZ_DIR) && COMPOSER_MEMORY_LIMIT=-1 composer update
 	@cd $(EZ_DIR) && $(COMPOSER) ezplatform-install
-	@cd $(EZ_DIR) && $(CONSOLE) cache:clear
+	@cd $(EZ_DIR) && bin/console cache:clear
 
 .PHONY: serveez
 serveez: stopez ## Clear the cache and start the web server
