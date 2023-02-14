@@ -27,8 +27,7 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "ext-json": "*",
-        "novactive/ezextrabundle": "dev-ez-extra-ibexa-4.0",
-        "kaliop/ezmigrationbundle": "^5.10"
+        "novactive/ezextrabundle": "dev-ez-extra-ibexa-4.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",

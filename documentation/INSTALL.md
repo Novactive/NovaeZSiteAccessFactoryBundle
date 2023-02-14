@@ -14,30 +14,24 @@ Add the following to your `composer.json` and run `php composer.phar update nova
 
 ```json
 "require": {
-    "novactive/ezsiteaccessfactorybundle": "dev-master",
+    "novactive/ezsiteaccessfactorybundle": "dev-ibexa4",
+    "novactive/ezextrabundle": "dev-ez-extra-ibexa-4.0",
 }
 ```
 
 ### Register the bundle
 
-Activate the bundle in `app\AppKernel.php` file.
+Activate the bundle in `config\bundles.php` file.
 
 ```php
-public function registerBundles()
-{
-   ...
-   $bundles = array(
-       new FrameworkBundle(),
-       ...
-       new Novactive\Bundle\eZSiteAccessFactoryBundle\NovaeZSiteAccessFactoryBundle(),
-   );
-   ...
-}
+...
+Novactive\Bundle\eZExtraBundle\NovaeZExtraBundle::class => [ 'all'=> true ],
+Novactive\Bundle\eZSiteAccessFactoryBundle\NovaeZSiteAccessFactoryBundle::class => [ 'all'=> true ],
 ```
 
 ### Add routes
 
-Make sure you add the routes to your routing `app/config/routing.yml`:
+Make sure you add the routes to your routing `config/routes/nova_ezsiteaccess_factory.yaml`:
 
 ```yaml
 _novaezsiteaccessfactory_routes:
@@ -66,7 +60,7 @@ imports:
 
 #### Setup a writable and backuped folder for siteaccesses and cache
 
-Add the following in your ``app/config/parameters.yml``
+Add the following in your ``config/packages/nova_ezsiteaccess_factory.yml``
 
 ```yaml
 novaezsiteaccessfactory_siteaccess_directory: YOURPATH
