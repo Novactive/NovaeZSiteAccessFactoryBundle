@@ -23,7 +23,7 @@ list:
 
 .PHONY: install-ibexa
 install-ibexa: ## Install Ibexa as the local project
-	#@docker run -p 3366:3306 --name ezdbnovaezsafactorycontainer -e MYSQL_ROOT_PASSWORD=ibexa mariadb:10.2
+	@docker run -p 3366:3306 --name ezdbnovaezsafactorycontainer -e MYSQL_ROOT_PASSWORD=ibexa mariadb:10.2
 	@composer create-project ibexa/commerce-skeleton="4.2.0" --prefer-dist --no-progress --no-scripts $(IBEXA_DIR)
 	@echo "Please set up this way:"
 	@echo "\tenv(DATABASE_HOST)     -> 127.0.0.1"
