@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose;
 
-use eZ\Publish\API\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Repository;
 
 trait EzRepositoryAware
 {

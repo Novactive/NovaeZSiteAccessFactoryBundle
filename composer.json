@@ -1,14 +1,14 @@
 {
     "name": "novactive/ezsiteaccessfactorybundle",
-    "description": "eZPlatform bundle that will allow you to create SiteAccess (website) on \nthe fly on top of an existing eZ Platform instance",
+    "description": "Ibexa bundle that will allow you to create SiteAccess (website) on \nthe fly on top of an existing DBX instance",
     "keywords": [
         "siteaccess",
-        "ezplatform",
+        "ibexa",
         "novactive",
         "websitefactory"
     ],
     "homepage": "https://github.com/Novactive/NovaeZSiteAccessFactoryBundle",
-    "type": "ezplatform-bundle",
+    "type": "ibexa-bundle",
     "authors": [
         {
             "name": "Novactive",
@@ -25,10 +25,9 @@
         "MIT"
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.3 || ^8.0",
         "ext-json": "*",
-        "ezsystems/ezpublish-kernel": "^7.4",
-        "novactive/ezextrabundle": "^2.0",
+        "novactive/ezextrabundle": "dev-ez-extra-ibexa-4.0",
         "kaliop/ezmigrationbundle": "^5.10"
     },
     "require-dev": {
@@ -45,8 +44,8 @@
     },
     "extra": {
         "thanks": {
-            "name": "ezsystems/ezplatform",
-            "url": "https://github.com/ezsystems/ezplatform"
+            "name": "ibexa/core",
+            "url": "https://github.com/ibexa/core"
         }
     }
 }

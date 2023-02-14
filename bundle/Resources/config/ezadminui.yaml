@@ -1,6 +1,6 @@
 services:
     novaezsiteaccessfactory.ezadminui.component.stylesheets:
-         parent: EzSystems\EzPlatformAdminUi\Component\TwigComponent
+         parent: Ibexa\AdminUi\Component\TwigComponent
          public: false
          arguments:
             $template: "@@ezdesign/ezadminui/stylesheets.html.twig"
@@ -8,7 +8,7 @@ services:
              - { name: ezplatform.admin_ui.component, group: 'stylesheet-head' }
 
     novaezsiteaccessfactory.ezadminui.component.javascripts:
-         parent: EzSystems\EzPlatformAdminUi\Component\TwigComponent
+         parent: Ibexa\AdminUi\Component\TwigComponent
          public: false
          arguments:
              $template: "@@ezdesign/ezadminui/javascripts.html.twig"
@@ -16,7 +16,7 @@ services:
              - { name: ezplatform.admin_ui.component, group: 'script-body' }
 
     Novactive\Bundle\eZSiteAccessFactoryBundle\Listener\AdminTopMenu:
-        arguments: ['@eZ\Publish\API\Repository\PermissionResolver']
+        arguments: ['@Ibexa\Contracts\Core\Repository\PermissionResolver']
         tags:
             - { name: kernel.event_listener, event: "ezplatform_admin_ui.menu_configure.main_menu", method: "onMenuConfigure",  priority: -100 }
 

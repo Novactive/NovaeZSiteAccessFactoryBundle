@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Controller;
 
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigResolver;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\MVC\Symfony\Security\User as SecurityUser;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess;
-use eZ\Publish\Core\MVC\Symfony\Templating\GlobalHelper;
+use Ibexa\Core\MVC\Symfony\Templating\GlobalHelper;
 use Novactive\Bundle\eZExtraBundle\Core\Helper\eZ\Wrapper;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose\EzRepositoryAware;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose\WrapperFactoryAware;
@@ -49,7 +49,7 @@ abstract class Controller
     private $globalHelper;
 
     /**
-     * @var ConfigResolver
+     * @var ConfigResolverInterface
      */
     protected $configResolver;
 
@@ -67,7 +67,7 @@ abstract class Controller
      * @required
      */
     public function setDependencies(
-        ConfigResolver $configResolver,
+        ConfigResolverInterface $configResolver,
         RouterInterface $router,
         FormFactoryInterface $formFactory,
         GlobalHelper $globalHelper,

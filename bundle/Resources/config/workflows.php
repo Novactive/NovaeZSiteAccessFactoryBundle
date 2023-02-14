@@ -19,10 +19,10 @@ return [
             'type' => 'state_machine',
             'supports' => [SiteConfiguration::class],
             'marking_store' => [
-                'type' => 'single_state',
-                'arguments' => ['lastStatus'],
+                'type' => 'method',
+                'property' => 'status',
             ],
-            'initial_place' => SiteConfiguration::STATUS_DRAFT,
+            'initial_marking' => SiteConfiguration::STATUS_DRAFT,
             'places' => SiteConfiguration::STATUSES,
             'transitions' => [
                 SiteConfiguration::TRANS_EDIT => [

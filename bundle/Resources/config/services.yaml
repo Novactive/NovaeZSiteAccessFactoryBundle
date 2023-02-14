@@ -49,7 +49,7 @@ services:
             -   method: setSiteAccessCacheDirectory
                 arguments: ["%novaezsiteaccessfactory_siteaccess_cache_directory%"]
         arguments:
-            $siteAccessList: "%ezpublish.siteaccess.list%"
+            $siteAccessList: "%ibexa.site_access.list%"
 
     Novactive\Bundle\eZSiteAccessFactoryBundle\Command\InstallCommand:
         calls:

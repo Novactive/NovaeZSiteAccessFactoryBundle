@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Twig;
 
 use Exception;
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigResolver;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose\EzRepositoryAware;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Service\SiteConfiguration as SiteConfigurationService;
@@ -26,7 +26,7 @@ final class SiteConfiguration
     use EzRepositoryAware;
 
     /**
-     * @var ConfigResolver
+     * @var ConfigResolverInterface
      */
     private $configResolver;
 
@@ -56,7 +56,7 @@ final class SiteConfiguration
     private $isEnterprise;
 
     public function __construct(
-        ConfigResolver $configResolver,
+        ConfigResolverInterface $configResolver,
         SiteConfigurationService $siteConfigurationService,
         bool $isEnterprise
     ) {

@@ -20,8 +20,8 @@ class Configuration extends SAConfiguration
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('nova_ezsiteaccess_factory');
+        $treeBuilder = new TreeBuilder('nova_ezsiteaccess_factory');
+//        $treeBuilder->root('nova_ezsiteaccess_factory');
 
         return $treeBuilder;
     }

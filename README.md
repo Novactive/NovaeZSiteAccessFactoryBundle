@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/packagist/l/novactive/ezsiteaccessfactorybundle.svg?style=flat-square)](LICENSE)
 
 Novactive eZ SiteAccess Factory Bundle is an eZPlatform bundle that will allow you to create SiteAccess (website) on 
-the fly on top of an existing eZ Platform instance.
+the fly on top of an existing Ibexa instance.
 
 
 !!!!
@@ -55,7 +55,7 @@ Then, thanks to a State Machine and a new Tab in the Admin Interface, this workf
 ## How it works
 
 Behing the scene, this bundle will save the Site Access configurations in many JSON files. 1 per Site Configuration and 
-outside of the source code). Those files are then used at compile time to inject the Site Access inside eZ Platform.
+outside of the source code). Those files are then used at compile time to inject the Site Access inside Ibexa.
 
 After each changes cache is cleared.
 
@@ -78,7 +78,7 @@ Credits
 This bundle uses
 
 - [Symfony Components](https://symfony.com) (Worklow, Configuration, Dependency Injection, etc.)
-- [eZ Platform](https://ezplatform.com) by [eZ Systems](https://ez.no)
+- [Ibexa](https://ibexa.co)
 - [Nova eZ Extra Bundle](https://github.com/Novactive/NovaeZExtraBundle) by [Novactive](https://www.novactive.us)
 - [Kaliop Migration Bundle](https://github.com/kaliop-uk/ezmigrationbundle) by [Kaliop UK](https://www.kaliop.co.uk/)
 

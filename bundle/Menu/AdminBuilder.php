@@ -15,7 +15,7 @@ namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Ibexa\Core\Helper\TranslationHelper;
 
 final class AdminBuilder
 {
@@ -25,11 +25,11 @@ final class AdminBuilder
     private $factory;
 
     /**
-     * @var TranslatorInterface
+     * @var TranslationHelper
      */
     private $translator;
 
-    public function __construct(FactoryInterface $factory, TranslatorInterface $translator)
+    public function __construct(FactoryInterface $factory, TranslationHelper $translator)
     {
         $this->factory = $factory;
         $this->translator = $translator;

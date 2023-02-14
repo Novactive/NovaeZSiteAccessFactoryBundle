@@ -40,9 +40,11 @@ class NovaeZSiteAccessFactoryExtension extends Extension implements PrependExten
         $loader->load('listeners.yaml');
 
         // Enable this bundle for Twig
-        $asseticBundles = $container->getParameter('assetic.bundles');
-        $asseticBundles[] = 'NovaeZSiteAccessFactoryBundle';
-        $container->setParameter('assetic.bundles', $asseticBundles);
+        if ($container->hasParameter('assetic.bundles')) {
+            $asseticBundles = $container->getParameter('assetic.bundles');
+            $asseticBundles[] = 'NovaeZSiteAccessFactoryBundle';
+            $container->setParameter('assetic.bundles', $asseticBundles);
+        }
     }
 
     public function prepend(ContainerBuilder $container): void

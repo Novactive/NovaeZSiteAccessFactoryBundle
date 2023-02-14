@@ -29,9 +29,9 @@ There are 4 configuration parameters:
 
 ## Use Case
 
-We implemented this bundle in an eZ Platform (multi-site) instance.
+We implemented this bundle in an Ibexa (multi-site) instance.
 
-- in the file app/config/ezplatform.yml
+- in the file app/config/ibexa.yml
 
 ```yaml
 ezpublish:

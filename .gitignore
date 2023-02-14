@@ -3,4 +3,5 @@ plantuml.jar
 vendor
 .php_cs.cache
 ezplatform
+ibexa
 .web-server-pid

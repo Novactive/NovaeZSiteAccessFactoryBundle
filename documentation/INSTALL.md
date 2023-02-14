@@ -2,8 +2,8 @@
 
 ## Requirements
 
-* eZ Platform 2.x
-* PHP PHP 7.3
+* Ibexa 4.2.0
+* PHP PHP 7.3 || 8.0
 * MariaDB 10.2 or MySQL 5.7+
 
 ## Installation steps
@@ -44,7 +44,7 @@ _novaezsiteaccessfactory_routes:
     resource: '@NovaeZSiteAccessFactoryBundle/Resources/config/routing/main.yaml'
 ```
 
-### Hook this eZ instance
+### Hook this Ibexa instance
 
 #### Add the SiteAccess Injector in your config
 
@@ -57,7 +57,7 @@ try {
 } catch (\Exception $e) {}
 ```
 
-And don't forget to include it at the top of your `app/config/ezplatform.yml`
+And don't forget to include it at the top of your `app/config/ibexa.yml`
 
 ```yaml
 imports:
