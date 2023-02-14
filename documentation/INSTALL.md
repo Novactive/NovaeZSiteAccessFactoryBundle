@@ -42,7 +42,7 @@ _novaezsiteaccessfactory_routes:
 
 #### Add the SiteAccess Injector in your config
 
-Add the following file `app/config/env/siteaccesses.php`
+Add the following file `config/packages/env/siteaccesses.php`
 
 ```php
 <?php
@@ -51,23 +51,19 @@ try {
 } catch (\Exception $e) {}
 ```
 
-And don't forget to include it at the top of your `app/config/ibexa.yml`
-
-```yaml
-imports:
-    - { resource: env/siteaccesses.php }
-```
-
 #### Setup a writable and backuped folder for siteaccesses and cache
 
 Add the following in your ``config/packages/nova_ezsiteaccess_factory.yml``
 
 ```yaml
-novaezsiteaccessfactory_siteaccess_directory: YOURPATH
-novaezsiteaccessfactory_siteaccess_cache_directory: YOURPATH/cache
-novaezsiteaccessfactory_designlist: ['standard_standard']
-novaezsiteaccessfactory_languages: ['eng-GB']
-novaezsiteaccessfactory_default_siteaccess_groups: ['site_group1', 'site_group2', '...']
+imports:
+    - { resource: env/siteaccesses.php }
+parameters: 
+    novaezsiteaccessfactory_siteaccess_directory: YOURPATH
+    novaezsiteaccessfactory_siteaccess_cache_directory: YOURPATH/cache
+    novaezsiteaccessfactory_designlist: ['standard_standard']
+    novaezsiteaccessfactory_languages: ['eng-GB']
+    novaezsiteaccessfactory_default_siteaccess_groups: ['site_group1', 'site_group2', '...']
 ```
 
 > Remember, your design list MUST exist

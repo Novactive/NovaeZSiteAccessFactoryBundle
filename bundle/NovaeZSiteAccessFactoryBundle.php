@@ -40,8 +40,6 @@ class NovaeZSiteAccessFactoryBundle extends Bundle
             }
         }
 
-        if ($this->extension) {
-            return $this->extension;
-        }
+        return $this->extension ?: null;
     }
 }

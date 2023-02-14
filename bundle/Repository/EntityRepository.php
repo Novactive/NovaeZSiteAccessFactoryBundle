@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Repository;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityRepository as BaseEntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository as BaseEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
