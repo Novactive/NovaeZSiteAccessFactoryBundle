@@ -58,6 +58,7 @@ services:
             -   method: setSiteAccessCacheDirectory
                 arguments: ["%novaezsiteaccessfactory_siteaccess_cache_directory%"]
 
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Service\SiteConfiguration: ~
     Novactive\Bundle\eZSiteAccessFactoryBundle\Twig\SiteConfiguration: ~
 
     # Workflow Listeners
@@ -92,7 +93,5 @@ services:
         tags:
             - { name: knp_menu.menu, alias: novaezsiteaccessfactory.menu.admin.save_cancel }
 
-    Novactive\Bundle\eZSiteAccessFactoryBundle\Repository\SiteConfiguration:
-        arguments:
-            - 'Novactive\Bundle\eZSiteAccessFactoryBundle\Entity\SiteConfiguration'
-        factory: ['@doctrine', 'getRepository']
+    Novactive\Bundle\eZSiteAccessFactoryBundle\Repository\SiteConfiguration: ~
+
