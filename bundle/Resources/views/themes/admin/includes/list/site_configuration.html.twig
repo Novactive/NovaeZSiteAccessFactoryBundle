@@ -11,12 +11,12 @@
             {% if isEnabled %}
                 <a class="btn btn-sm novaezsiteaccessfactory-site-actions-button" title="{{ title|trans }}" href="{{ link }}">
                     <svg class="ez-icon edit-button">
-                        <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#{{ icon }}"></use>
+                        <use xlink:href="/bundles/ibexaicons/img/all-icons.svg#{{ icon }}"></use>
                     </svg>
                 </a>
             {% else %}
                 <svg class="ez-icon disabled">
-                    <use xlink:href="/bundles/ezplatformadminui/img/ez-icons.svg#{{ icon }}"></use>
+                    <use xlink:href="/bundles/ibexaicons/img/all-icons.svg#{{ icon }}"></use>
                 </svg>
             {% endif %}
         </td>
@@ -59,11 +59,11 @@
             <td>
                 {% if item.root is not null %}
                     <p>Root Location:
-                        <a href="{{ path(item.root.location, {siteaccess: 'admin'}) }}" target="_blank">{{ ez_content_name(item.root.content) }}</a>
+                        <a href="{{ path('ibexa.url.alias', {location: item.root.location, siteaccess: 'admin'}) }}" target="_blank">{{ ibexa_content_name(item.root.content) }}</a>
                     </p>
                     <p>
                         Configuration:
-                        <a href="{{ path(item.configuration.location, {siteaccess: 'admin'}) }}" target="_blank">{{ ez_content_name(item.configuration.content) }}</a>
+                        <a href="{{ path('ibexa.url.alias', {location: item.configuration.location, siteaccess: 'admin'}) }}" target="_blank">{{ ibexa_content_name(item.configuration.content) }}</a>
                     </p>
                 {% endif %}
             </td>

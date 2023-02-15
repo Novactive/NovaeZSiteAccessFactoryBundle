@@ -45,7 +45,8 @@ final class AdminTopMenu
                 [
                     'label' => 'Nova eZ SiteAccess Factory Admin',
                 ]
-            );
+            )
+                ->setExtra('icon', 'sites');
             $top->addChild(
                 'novaezsiteaccessfactoryadmin_websites_management',
                 [

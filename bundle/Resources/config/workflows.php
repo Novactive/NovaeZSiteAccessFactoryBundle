@@ -20,7 +20,7 @@ return [
             'supports' => [SiteConfiguration::class],
             'marking_store' => [
                 'type' => 'method',
-                'property' => 'status',
+                'property' => 'lastStatus',
             ],
             'initial_marking' => SiteConfiguration::STATUS_DRAFT,
             'places' => SiteConfiguration::STATUSES,
