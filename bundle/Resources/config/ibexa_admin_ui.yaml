@@ -1,19 +1,40 @@
 services:
-    novaezsiteaccessfactory.ezadminui.component.stylesheets:
-         parent: Ibexa\AdminUi\Component\TwigComponent
-         public: false
-         arguments:
-            $template: "@@ibexadesign/ezadminui/stylesheets.html.twig"
-         tags:
-             - { name: ezplatform.admin_ui.component, group: 'stylesheet-head' }
+    ibexa.adminui.novaezsiteaccessfactory.css_page:
+        parent: Ibexa\AdminUi\Component\LinkComponent
+        arguments:
+            $href: "/bundles/novaezsiteaccessfactory/css/novaezsiteaccessfactory.css"
+        tags:
+            - { name: ibexa.admin_ui.component, group: 'stylesheet-head' }
 
-    novaezsiteaccessfactory.ezadminui.component.javascripts:
-         parent: Ibexa\AdminUi\Component\TwigComponent
-         public: false
-         arguments:
-             $template: "@@ibexadesign/ezadminui/javascripts.html.twig"
-         tags:
-             - { name: ezplatform.admin_ui.component, group: 'script-body' }
+    ibexa.adminui.novaezsiteaccessfactory.doc_js:
+        parent: Ibexa\AdminUi\Component\ScriptComponent
+        autowire: true
+        autoconfigure: false
+        public: false
+        arguments:
+            $src: "/bundles/novaezsiteaccessfactory/js/modules/doc.js"
+        tags:
+            - { name: ibexa.admin_ui.component, group: 'script-body' }
+
+    ibexa.adminui.novaezsiteaccessfactory.form_js:
+        parent: Ibexa\AdminUi\Component\ScriptComponent
+        autowire: true
+        autoconfigure: false
+        public: false
+        arguments:
+            $src: "/bundles/novaezsiteaccessfactory/js/modules/editForms.js"
+        tags:
+            - { name: ibexa.admin_ui.component, group: 'script-body' }
+
+    ibexa.adminui.novaezsiteaccessfactory.novaezsiteaccessfactory_js:
+        parent: Ibexa\AdminUi\Component\ScriptComponent
+        autowire: true
+        autoconfigure: false
+        public: false
+        arguments:
+            $src: "/bundles/novaezsiteaccessfactory/js/novaezsiteaccessfactory.js"
+        tags:
+            - { name: ibexa.admin_ui.component, group: 'script-body' }
 
     Novactive\Bundle\eZSiteAccessFactoryBundle\Listener\AdminTopMenu:
         arguments: ['@Ibexa\Contracts\Core\Repository\PermissionResolver']
