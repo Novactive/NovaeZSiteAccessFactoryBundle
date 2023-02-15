@@ -75,10 +75,11 @@ services:
 
     Novactive\Bundle\eZSiteAccessFactoryBundle\Core\SiteAccessAwareEntityManagerFactory:
         $settings: { debug: "%kernel.debug%", cache_dir: "%kernel.cache_dir%" }
+        $resolver: "@doctrine.orm.default_entity_listener_resolver"
 
     novaezsiteaccessfactory.doctrine.entity_manager:
         class: Doctrine\ORM\EntityManagerInterface
-        factory: 'Novactive\Bundle\eZSiteAccessFactoryBundle\Core\SiteAccessAwareEntityManagerFactory:get'
+        factory: ['@Novactive\Bundle\eZSiteAccessFactoryBundle\Core\SiteAccessAwareEntityManagerFactory', 'get']
 
 
     Novactive\Bundle\eZSiteAccessFactoryBundle\Form\Admin\SiteConfigurationType:
@@ -89,7 +90,7 @@ services:
     Novactive\Bundle\eZSiteAccessFactoryBundle\Menu\AdminBuilder: ~
     novaezsiteaccessfactory.menu.admin.save_cancel:
         class: Knp\Menu\MenuItem
-        factory: 'Novactive\Bundle\eZSiteAccessFactoryBundle\Menu\AdminBuilder:createSaveCancelMenu'
+        factory: ['@Novactive\Bundle\eZSiteAccessFactoryBundle\Menu\AdminBuilder', 'createSaveCancelMenu']
         tags:
             - { name: knp_menu.menu, alias: novaezsiteaccessfactory.menu.admin.save_cancel }
 
