@@ -23,14 +23,18 @@ list:
 
 .PHONY: install-ibexa
 install-ibexa: ## Install Ibexa as the local project
-	@docker run -p 3366:3306 --name ezdbnovaezsafactorycontainer -e MYSQL_ROOT_PASSWORD=ibexa mariadb:10.2
+	#@docker run -d -p 3366:3306 --name ezdbnovaezsafactorycontainer -e MYSQL_ROOT_PASSWORD=ibexa mariadb:10.2
 	@composer create-project ibexa/commerce-skeleton="4.2.0" --prefer-dist --no-progress --no-scripts $(IBEXA_DIR)
+	@curl -o tests/provisioning/wrap.php https://raw.githubusercontent.com/Plopix/symfony-bundle-app-wrapper/master/wrap-bundle.php
+    @WRAP_APP_DIR=./ibexa WRAP_BUNDLE_DIR=./ php tests/provisioning/wrap.php
+    @rm tests/provisioning/wrap.php
 	@echo "Please set up this way:"
 	@echo "\tenv(DATABASE_HOST)     -> 127.0.0.1"
 	@echo "\tenv(DATABASE_PORT)     -> 3366"
 	@echo "\tenv(DATABASE_PASSWORD) -> ibexa"
 	@cd $(IBEXA_DIR) && COMPOSER_MEMORY_LIMIT=-1 composer update --lock
-	@cd $(IBEXA_DIR) && bin/console ibexa:install clean
+	@cd $(IBEXA_DIR) && bin/console ibexa:install
+	@cd $(IBEXA_DIR) && bin/console ibexa:graphql:generate-schema
 	@cd $(IBEXA_DIR) && bin/console cache:clear
 
 .PHONY: serve-ibexa

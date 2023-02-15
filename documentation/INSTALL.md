@@ -53,7 +53,7 @@ try {
 
 #### Setup a writable and backuped folder for siteaccesses and cache
 
-Add the following in your ``config/packages/nova_ezsiteaccess_factory.yml``
+Add the following in your ``config/packages/nova_ezsiteaccess_factory.yaml``
 
 ```yaml
 imports:

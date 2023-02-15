@@ -19,7 +19,7 @@ use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use eZ\Bundle\EzPublishCoreBundle\ApiLoader\RepositoryConfigurationProvider;
+use Ibexa\Bundle\Core\ApiLoader\RepositoryConfigurationProvider;
 
 final class SiteAccessAwareEntityManagerFactory
 {
