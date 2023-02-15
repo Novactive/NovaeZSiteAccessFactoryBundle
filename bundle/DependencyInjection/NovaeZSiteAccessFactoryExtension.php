@@ -36,7 +36,7 @@ class NovaeZSiteAccessFactoryExtension extends Extension implements PrependExten
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         $loader->load('services.yaml');
-        $loader->load('ezadminui.yaml');
+        $loader->load('ibexa_admin_ui.yaml');
         $loader->load('listeners.yaml');
 
         // Enable this bundle for Twig
@@ -64,7 +64,7 @@ class NovaeZSiteAccessFactoryExtension extends Extension implements PrependExten
 
         $themesConfigFile = __DIR__.'/../Resources/config/themes.yaml';
         $config = Yaml::parse(file_get_contents($themesConfigFile));
-        $container->prependExtensionConfig('ezdesign', $config);
+        $container->prependExtensionConfig('ibexadesign', $config);
         $container->addResource(new FileResource($themesConfigFile));
     }
 }

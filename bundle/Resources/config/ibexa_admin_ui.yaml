@@ -3,7 +3,7 @@ services:
          parent: Ibexa\AdminUi\Component\TwigComponent
          public: false
          arguments:
-            $template: "@@ezdesign/ezadminui/stylesheets.html.twig"
+            $template: "@@ibexadesign/ezadminui/stylesheets.html.twig"
          tags:
              - { name: ezplatform.admin_ui.component, group: 'stylesheet-head' }
 
@@ -11,7 +11,7 @@ services:
          parent: Ibexa\AdminUi\Component\TwigComponent
          public: false
          arguments:
-             $template: "@@ezdesign/ezadminui/javascripts.html.twig"
+             $template: "@@ibexadesign/ezadminui/javascripts.html.twig"
          tags:
              - { name: ezplatform.admin_ui.component, group: 'script-body' }
 

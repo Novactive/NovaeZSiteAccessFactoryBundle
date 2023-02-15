@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Listener;
 
 use eZ\Publish\API\Repository\PermissionResolver;
-use EzSystems\EzPlatformAdminUi\Menu\Event\ConfigureMenuEvent;
+use Ibexa\AdminUi\Menu\Event\ConfigureMenuEvent;
 use Knp\Menu\MenuItem;
 
 final class AdminTopMenu

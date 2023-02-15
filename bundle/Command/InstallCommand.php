@@ -69,7 +69,7 @@ class InstallCommand extends Command
 
         $io->title('Update the Content Repository to create Custom Novactive eZ Site Access Factory Content Types.');
 
-        $content = $this->twig->render('@ezdesign/site_configuration/content_types.yaml.twig');
+        $content = $this->twig->render('@ibexadesign/site_configuration/content_types.yaml.twig');
         $fs = new Filesystem();
         $path = "{$this->siteAccessCacheDirectory}/".time().'_data.yaml';
         $fs->dumpFile($path, $content);

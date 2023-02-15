@@ -106,9 +106,9 @@ final class Processor
 
         // Check type content type (novaezsiteaccessfactory_home_page_vide or novaezsiteaccessfactory_home_page)
         if ($configuration->getTemplate() == 1) {
-            $content = $this->twig->render('@ezdesign/site_configuration/siteaccess_empty.yaml.twig', $data);
+            $content = $this->twig->render('@ibexadesign/site_configuration/siteaccess_empty.yaml.twig', $data);
         } else {
-            $content = $this->twig->render('@ezdesign/site_configuration/siteaccess.yaml.twig', $data);
+            $content = $this->twig->render('@ibexadesign/site_configuration/siteaccess.yaml.twig', $data);
         }
 
         $fs = new Filesystem();

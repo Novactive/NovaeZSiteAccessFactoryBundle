@@ -46,7 +46,7 @@ class SiteConfigurationController extends Controller
     /**
      * @Route("/edit/{id}", name="novaezsiteaccessfactoryadmin_siteconfiguration_edit")
      * @Route("/create", name="novaezsiteaccessfactoryadmin_siteconfiguration_create")
-     * @Template("@ezdesign/site_configuration/edit.html.twig")
+     * @Template("@ibexadesign/site_configuration/edit.html.twig")
      *
      * @return array|RedirectResponse
      */
@@ -160,7 +160,7 @@ class SiteConfigurationController extends Controller
     /**
      * @Route("/{status}/{page}/{limit}", name="novaezsiteaccessfactoryadmin_siteconfiguration_index",
      *                                    defaults={"page":1, "limit":10, "status":"all"})
-     * @Template("@ezdesign/site_configuration/index.html.twig")
+     * @Template("@ibexadesign/site_configuration/index.html.twig")
      */
     public function index(
         SiteConfigurationRepository $repository,
