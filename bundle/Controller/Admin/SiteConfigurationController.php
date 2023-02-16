@@ -15,6 +15,7 @@ namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Controller\Admin;
 
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Controller\Controller;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Service\SiteConfiguration as SiteConfigurationService;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Entity\SiteConfiguration;
@@ -52,10 +53,11 @@ class SiteConfigurationController extends Controller
      */
     public function edit(
         Request $request,
-        EntityManagerInterface $entityManager,
+        ManagerRegistry $registry,
         Registry $workflows,
         ?int $id = null
     ) {
+        $entityManager = $registry->getManager();
         if (null === $id) {
             $siteConfiguration = new SiteConfiguration();
             $siteConfiguration->setType('standard');
@@ -99,8 +101,9 @@ class SiteConfigurationController extends Controller
         string $transition,
         int $id,
         Registry $workflows,
-        EntityManagerInterface $entityManager
+        ManagerRegistry $registry
     ): RedirectResponse {
+        $entityManager = $registry->getManager();
         $siteConfiguration = $this->retrieveOrNotFoundSiteConfiguration($entityManager, $id);
         $workflow = $workflows->get($siteConfiguration);
         if (false === $workflow->can($siteConfiguration, $transition)) {
@@ -121,9 +124,10 @@ class SiteConfigurationController extends Controller
      */
     public function duplicate(
         int $id,
-        EntityManagerInterface $entityManager,
+        ManagerRegistry $registry,
         SiteConfigurationService $service
     ): RedirectResponse {
+        $entityManager = $registry->getManager();
         $siteConfiguration = $this->retrieveOrNotFoundSiteConfiguration($entityManager, $id);
         $new = $service->duplicate($siteConfiguration);
         $new->setUser($this->getUser());
@@ -140,9 +144,10 @@ class SiteConfigurationController extends Controller
      */
     public function addTranslation(
         int $id,
-        EntityManagerInterface $entityManager,
+        ManagerRegistry $registry,
         SiteConfigurationService $service
     ): RedirectResponse {
+        $entityManager = $registry->getManager();
         $siteConfiguration = $this->retrieveOrNotFoundSiteConfiguration($entityManager, $id);
         if ($siteConfiguration->getRootLocationId() > 0) {
             $new = $service->duplicate($siteConfiguration, 'translated');
