@@ -2,166 +2,215 @@
 -
     type: content_type
     mode: create
-    content_type_group: 'Content'
-    identifier: novaezsiteaccessfactory_home_page
-    name:
-        eng-GB: "Home Page"
-    description:
-        eng-GB: "An Homepage"
-    name_pattern: '<name>'
-    url_name_pattern: '<name>'
-    is_container: true
-    lang: eng-GB
-    attributes:
+    metadata:
+        identifier: novaezsiteaccessfactory_home_page
+        contentTypeGroups:
+            - 'Content'
+        mainTranslation: eng-GB
+        nameSchema: '<name>'
+        urlAliasSchema: '<name>'
+        container: true
+        remoteId: null
+        translations:
+            eng-GB:
+                name: 'Home Page'
+                description: 'An Homepage'
+    fields:
         -
             identifier: name
             type: ezstring
-            name:
-                eng-GB: "Name"
-            description:
-                eng-GB: ""
+            position: 10
+            translations:
+                eng-GB:
+                    name: 'Name'
+                    description: ''
             required: true
             searchable: false
-            info-collector: false
-            disable-translation: false
+            infoCollector: false
+            translatable: true
             category: 'content'
-            position: 10
-
+            defaultValue: null
+            fieldSettings: { }
+            validatorConfiguration:
+                StringLengthValidator:
+                    maxStringLength: null
+                    minStringLength: null
         -
             identifier: content
             type: ezrichtext
-            name:
-                eng-GB: "Content Page"
-            description:
-                eng-GB: ""
+            position: 30
+            translations:
+                eng-GB:
+                    name: 'Content Page'
+                    description: ''
             required: false
             searchable: false
-            info-collector: false
-            disable-translation: false
+            infoCollector: false
+            translatable: true
             category: 'content'
-            position: 30
+            defaultValue: null
+            fieldSettings: {  }
+            validatorConfiguration: {  }
 
 # Site Configuration
 -
     type: content_type
     mode: create
-    content_type_group: 'Content'
-    identifier: novaezsiteaccessfactory_site_configuration
-    name:
-        eng-GB: "Site Configuration"
-    description:
-        eng-GB: 'Configuration of the website that contains this content.'
-    name_pattern: '<name>'
-    url_name_pattern: '<name>'
-    is_container: false
-    lang: eng-GB
-    attributes:
+    metadata:
+        identifier: novaezsiteaccessfactory_site_configuration
+        contentTypeGroups:
+            - 'Content'
+        mainTranslation: eng-GB
+        nameSchema: '<name>'
+        urlAliasSchema: '<name>'
+        container: false
+        remoteId: null
+        translations:
+            eng-GB:
+                name: 'Site Configuration'
+                description: 'Configuration of the website that contains this content.'
+    fields:
         -
             identifier: name
             type: ezstring
-            name:
-                eng-GB: "Site Name"
-            description:
-                eng-GB: ""
+            position: 10
+            translations:
+                eng-GB:
+                    name: 'Site Name'
+                    description: ''
             required: true
             searchable: false
-            info-collector: false
-            disable-translation: false
+            infoCollector: false
+            translatable: true
             category: 'content'
-            position: 10
+            defaultValue: null
+            fieldSettings: {  }
+            validatorConfiguration:
+                StringLengthValidator:
+                    maxStringLength: null
+                    minStringLength: null
         -
             identifier: logo
             type: ezimage
-            name:
-                eng-GB: "Logo"
-            description:
-                eng-GB: "Site Logo"
+            position: 20
+            translations:
+                eng-GB:
+                    name: 'Logo'
+                    description: 'Site Logo'
             required: false
             searchable: false
-            info-collector: false
-            disable-translation: false
+            infoCollector: false
+            translatable: true
             category: 'content'
-            position: 20
+            defaultValue: null
+            fieldSettings: {  }
+            validatorConfiguration:
+                FileSizeValidator:
+                    maxFileSize: null
         -
             identifier: body_css_class
             type: ezstring
-            name:
-                eng-GB: "CSS class put on the <body>"
-            description:
-                eng-GB: "Enable a specific customization"
+            position: 21
+            translations:
+                eng-GB:
+                    name: 'CSS class put on the <body>'
+                    description: 'Enable a specific customization'
             required: false
             searchable: false
-            info-collector: false
-            disable-translation: true
+            infoCollector: false
+            translatable: true
             category: 'content'
-            position: 21
+            defaultValue: null
+            fieldSettings: {  }
+            validatorConfiguration:
+                StringLengthValidator:
+                    maxStringLength: null
+                    minStringLength: null
         -
             identifier: custom_scss
             type: eztext
-            field-settings:
-                textRows: 10
-            name:
-                eng-GB: "Injected SCSS"
-            description:
-                eng-GB: "SCSS allows you to nest your CSS rules."
+            position: 22
+            translations:
+                eng-GB:
+                    name: 'Injected SCSS'
+                    description: 'SCSS allows you to nest your CSS rules.'
             required: false
             searchable: false
-            info-collector: false
-            disable-translation: true
+            infoCollector: false
+            translatable: true
             category: 'content'
-            position: 22
+            defaultValue: null
+            fieldSettings:
+                textRows: 10
+            validatorConfiguration: {  }
         -
             identifier: footer
             type: ezrichtext
-            name:
-                eng-GB: "Footer"
-            description:
-                eng-GB: ""
+            position: 70
+            translations:
+                eng-GB:
+                    name: 'Footer'
+                    description: ''
             required: false
             searchable: false
-            info-collector: false
-            disable-translation: false
+            infoCollector: false
+            translatable: true
             category: 'content'
-            position: 70
+            defaultValue: null
+            fieldSettings: {  }
+            validatorConfiguration: {  }
 
 # Home page Vide
 -
     type: content_type
     mode: create
-    content_type_group: 'Content'
-    identifier: novaezsiteaccessfactory_static_home_page
-    name:
-        eng-GB: "Home Page"
-    description:
-        eng-GB: "An Homepage"
-    name_pattern: '<name>'
-    url_name_pattern: '<name>'
-    is_container: true
-    lang: eng-GB
-    attributes:
+    metadata:
+        identifier: novaezsiteaccessfactory_static_home_page
+        contentTypeGroups:
+            - 'Content'
+        mainTranslation: eng-GB
+        nameSchema: '<name>'
+        urlAliasSchema: '<name>'
+        container: true
+        remoteId: null
+        translations:
+            eng-GB:
+                name: 'Home Page'
+                description: 'An Homepage'
+    fields:
         -
             identifier: name
             type: ezstring
-            name:
-                eng-GB: "Name"
-            description:
-                eng-GB: ""
+            position: 10
+            translations:
+                eng-GB:
+                    name: 'Name'
+                    description: ''
             required: true
             searchable: false
-            info-collector: false
-            disable-translation: false
+            infoCollector: false
+            translatable: true
             category: 'content'
-            position: 10
+            defaultValue: null
+            fieldSettings: {  }
+            validatorConfiguration:
+                StringLengthValidator:
+                    maxStringLength: null
+                    minStringLength: null
         -
             identifier: content_html
             type: eztext
-            name:
-                eng-GB: "Content HTML"
-            description:
-                eng-GB: ""
+            position: 20
+            translations:
+                eng-GB:
+                    name: 'Content HTML'
+                    description: ''
             required: false
             searchable: false
-            info-collector: false
-            disable-translation: true
+            infoCollector: false
+            translatable: false
             category: 'content'
-            position: 20
+            defaultValue: null
+            fieldSettings:
+                textRows: 10
+            validatorConfiguration: {  }
