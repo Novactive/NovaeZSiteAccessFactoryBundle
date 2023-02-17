@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Command;
 
-//use Kaliop\eZMigrationBundle\API\Collection\MigrationDefinitionCollection;
-//use Kaliop\eZMigrationBundle\Core\MigrationService;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Migration\MigrationService;
+use Ibexa\Migration\Repository\Migration;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\SiteAccess\SiteAccessRegistryAware;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Filesystem\Filesystem;
 use Twig\Environment;
 
 class InstallCommand extends Command
@@ -33,18 +33,25 @@ class InstallCommand extends Command
      */
     private $twig;
 
-//    /**
-//     * @var MigrationService
-//     */
-//    private $migrationService;
+    /**
+     * @var MigrationService
+     */
+    private $migrationService;
+
+    /** @var ContentTypeService */
+    private $contentTypeService;
 
     /**
      * @required
      */
-    public function setDependencies(Environment $twig/*, MigrationService $migrationService*/): void
-    {
+    public function setDependencies(
+        Environment $twig,
+        MigrationService $migrationService,
+        ContentTypeService $contentTypeService
+    ): void {
         $this->twig = $twig;
-//        $this->migrationService = $migrationService;
+        $this->migrationService = $migrationService;
+        $this->contentTypeService = $contentTypeService;
     }
 
     protected function configure(): void
@@ -69,16 +76,17 @@ class InstallCommand extends Command
 
         $io->title('Update the Content Repository to create Custom Novactive eZ Site Access Factory Content Types.');
 
-        $content = $this->twig->render('@ibexadesign/site_configuration/content_types.yaml.twig');
-        $fs = new Filesystem();
-        $path = "{$this->siteAccessCacheDirectory}/".time().'_data.yaml';
-        $fs->dumpFile($path, $content);
-//        /** @var MigrationDefinitionCollection $migrationDefinitions */
-//        $migrationDefinitions = $this->migrationService->getMigrationsDefinitions([$path]);
-//        foreach ($migrationDefinitions as $migrationDefinition) {
-//            $migration = $this->migrationService->parseMigrationDefinition($migrationDefinition);
-//            $this->migrationService->executeMigration($migration);
-//        }
+        try {
+            $this->contentTypeService->loadContentTypeByIdentifier('novaezsiteaccessfactory_home_page');
+        } catch (\Exception $e) {
+            $content = $this->twig->render('@ibexadesign/site_configuration/content_types.yaml.twig');
+            $migrationName = 'siteaccess_factory_data.yaml';
+            $migration = new Migration($migrationName, $content);
+            $this->migrationService->add($migration);
+            if (!$this->migrationService->isMigrationExecuted($migration)) {
+                $this->migrationService->executeOne($migration);
+            }
+        }
 
         $io->success('Done.');
 
