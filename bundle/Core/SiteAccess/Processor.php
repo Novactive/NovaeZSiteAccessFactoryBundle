@@ -111,22 +111,12 @@ final class Processor
             $content = $this->twig->render('@ibexadesign/site_configuration/siteaccess.yaml.twig', $data);
         }
 
-//        $fs = new Filesystem();
         $migrationName = "{$configuration->getSiteaccessName()}_data.yaml";
-//        $path = "{$this->siteAccessCacheDirectory}/".time()."{$configuration->getSiteaccessName()}_data.yaml";
-
         $migration = new Migration($migrationName, $content);
         $this->migrationService->add($migration);
         if (!$this->migrationService->isMigrationExecuted($migration)) {
             $this->migrationService->executeOne($migration);
         }
-//        $fs->dumpFile($path, $content);
-//        /** @var MigrationDefinitionCollection $migrationDefinitions */
-//        $migrationDefinitions = $this->migrationService->getMigrationsDefinitions([$path]);
-//        foreach ($migrationDefinitions as $migrationDefinition) {
-//            $migration = $this->migrationService->parseMigrationDefinition($migrationDefinition);
-//            $this->migrationService->executeMigration($migration);
-//        }
 
         if ($configuration->getRootLocationId() > 0) {
             return $configuration->getRoot()->location;
