@@ -55,7 +55,7 @@
         remoteId: null
         alwaysAvailable: true
     location:
-        parentLocationRemoteId: 'reference:{{ key }}_static_home_page_location_id'
+        parentLocationId: 'reference:{{ key }}_static_home_page_location_id'
         locationRemoteId: null
         hidden: false
         sortField: 2
@@ -123,6 +123,7 @@
         contentType: user
         username: {{ adminEmail }}
         email: {{ adminEmail }}
+        login: {{ name }}
         password: {{ adminPassword }}
         lang: {{ lang }}
     fields:

@@ -128,17 +128,16 @@ final class SiteConfigurationTransitCommand extends Command
     private function givePermissions(OutputInterface $output, string $siteAccessIdentifier): void
     {
         $output->write('Create Login Permissions in a new Thread...');
-        $process = new Process(
-            [
-                "bin/console novaezsiteaccessfactory:create:userlogin:permissions {$siteAccessIdentifier}",
-            ],
-            $this->rootDir
-        );
+
         try {
-            $process->mustRun();
-            $output->writeln('....[OK]'.PHP_EOL.'Results:');
-            $output->write($process->getOutput());
-        } catch (ProcessFailedException $exception) {
+            $command = $this->getApplication()->find(CreateUserLoginPermissionCommand::$defaultName);
+            $arguments = [
+                'command' => CreateUserLoginPermissionCommand::$defaultName,
+                'siteaccess' => $siteAccessIdentifier,
+            ];
+            $commandInput = new ArrayInput($arguments);
+            $command->run($commandInput, $output);
+        } catch (\Exception $exception) {
             $output->write($exception->getMessage());
         }
     }

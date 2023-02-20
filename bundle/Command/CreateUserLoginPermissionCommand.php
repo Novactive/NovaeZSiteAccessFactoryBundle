@@ -57,9 +57,10 @@ final class CreateUserLoginPermissionCommand extends Command
             } catch (NotFoundException $exception) {
                 $roleStruct = $roleService->newRoleCreateStruct($identifier);
                 $policyStruct = $roleService->newPolicyCreateStruct('user', 'login');
-                $limitation = new SiteAccessLimitation();
-                $limitation->limitationValues[] = sprintf('%u', crc32($siteAccessIdentifier));
-                $policyStruct->addLimitation($limitation);
+                // TODO check this
+//                $limitation = new SiteAccessLimitation();
+//                $limitation->limitationValues[] = sprintf('%u', crc32($siteAccessIdentifier));
+//                $policyStruct->addLimitation($limitation);
                 $roleStruct->addPolicy($policyStruct);
                 $roleDraft = $roleService->createRole($roleStruct);
                 $roleService->publishRoleDraft($roleDraft);

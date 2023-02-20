@@ -90,8 +90,7 @@ final class Processor
     {
         $data = $this->generateData($configuration);
         try {
-            $user = $this->repository->getUserService()->loadUserByEmail($configuration->getAdminEmail());
-
+            $user = $this->repository->getUserService()->loadUserByLogin($configuration->getAdminEmail());
             $groups = $this->repository->getUserService()->loadUserGroupsOfUser($user);
             $data['user'] = $user;
             $data['groupIds'] = array_map(
