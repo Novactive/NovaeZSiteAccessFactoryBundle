@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Controller;
 
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\MVC\Symfony\Security\User as SecurityUser;
-use eZ\Publish\Core\MVC\Symfony\SiteAccess;
+use Ibexa\Core\MVC\Symfony\SiteAccess;
 use Ibexa\Core\MVC\Symfony\Templating\GlobalHelper;
 use Novactive\Bundle\eZExtraBundle\Core\Helper\eZ\Wrapper;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose\EzRepositoryAware;

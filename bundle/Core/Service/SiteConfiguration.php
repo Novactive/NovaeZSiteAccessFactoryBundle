@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Service;
 
 use DateTime;
-use eZ\Publish\API\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Novactive\Bundle\eZExtraBundle\Core\Helper\eZ\Content as ContentHelper;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Entity\SiteConfiguration as SiteConfigurationEntity;
 
