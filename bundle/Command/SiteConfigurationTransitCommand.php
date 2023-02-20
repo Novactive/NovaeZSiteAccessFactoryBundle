@@ -129,7 +129,9 @@ final class SiteConfigurationTransitCommand extends Command
     {
         $output->write('Create Login Permissions in a new Thread...');
         $process = new Process(
-            "bin/console novaezsiteaccessfactory:create:userlogin:permissions {$siteAccessIdentifier}",
+            [
+                "bin/console novaezsiteaccessfactory:create:userlogin:permissions {$siteAccessIdentifier}",
+            ],
             $this->rootDir
         );
         try {

@@ -64,7 +64,7 @@ class InstallCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $io->title('Update the Database with Custom Novactive eZ Site Access Factory Table.');
+        $io->title('Update the Database with Custom Almavia CX eZ Site Access Factory Table.');
         $command = $this->getApplication()->find('doctrine:schema:update');
         $arguments = [
             'command' => 'doctrine:schema:update',
@@ -74,7 +74,7 @@ class InstallCommand extends Command
         $arrayInput = new ArrayInput($arguments);
         $command->run($arrayInput, $output);
 
-        $io->title('Update the Content Repository to create Custom Novactive eZ Site Access Factory Content Types.');
+        $io->title('Update the Content Repository to create Custom Almavia CX eZ Site Access Factory Content Types.');
 
         try {
             $this->contentTypeService->loadContentTypeByIdentifier('novaezsiteaccessfactory_home_page');
