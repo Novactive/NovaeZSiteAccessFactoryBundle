@@ -98,6 +98,7 @@ final class SiteConfigurationTransitCommand extends Command
         $rep = $this->entityManager->getRepository(SiteConfiguration::class);
         $siteConfig = $rep->findByFilters(['status' => $requiredState]);
 
+
         $needCacheClear = false;
         foreach ($siteConfig as $config) {
             /* @var SiteConfiguration $config */
@@ -128,16 +129,20 @@ final class SiteConfigurationTransitCommand extends Command
     private function givePermissions(OutputInterface $output, string $siteAccessIdentifier): void
     {
         $output->write('Create Login Permissions in a new Thread...');
-
+        $process = new Process(
+            [
+                "php",
+                "bin/console",
+                "novaezsiteaccessfactory:create:userlogin:permissions",
+                "{$siteAccessIdentifier}",
+            ],
+            $this->rootDir
+        );
         try {
-            $command = $this->getApplication()->find(CreateUserLoginPermissionCommand::$defaultName);
-            $arguments = [
-                'command' => CreateUserLoginPermissionCommand::$defaultName,
-                'siteaccess' => $siteAccessIdentifier,
-            ];
-            $commandInput = new ArrayInput($arguments);
-            $command->run($commandInput, $output);
-        } catch (\Exception $exception) {
+            $process->mustRun();
+            $output->writeln('....[OK]'.PHP_EOL.'Results:');
+            $output->write($process->getOutput());
+        } catch (ProcessFailedException $exception) {
             $output->write($exception->getMessage());
         }
     }
