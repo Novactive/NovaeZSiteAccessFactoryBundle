@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Core\SiteAccess;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\User\UserGroup;
-//use Kaliop\eZMigrationBundle\API\Collection\MigrationDefinitionCollection;
-//use Kaliop\eZMigrationBundle\Core\MigrationService;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Migration\MigrationService;
+use Ibexa\Migration\Repository\Migration;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose\EzRepositoryAware;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose\WrapperFactoryAware;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Entity\SiteConfiguration;
@@ -35,15 +35,15 @@ final class Processor
      */
     private $twig;
 
-//    /**
-//     * @var MigrationService
-//     */
-//    private $migrationService;
+    /**
+     * @var MigrationService
+     */
+    private $migrationService;
 
-    public function __construct(Environment $twig/*, MigrationService $migrationService*/)
+    public function __construct(Environment $twig, MigrationService $migrationService)
     {
         $this->twig = $twig;
-//        $this->migrationService = $migrationService;
+        $this->migrationService = $migrationService;
     }
 
     public function __invoke(SiteConfiguration $configuration)
@@ -111,15 +111,12 @@ final class Processor
             $content = $this->twig->render('@ibexadesign/site_configuration/siteaccess.yaml.twig', $data);
         }
 
-        $fs = new Filesystem();
-        $path = "{$this->siteAccessCacheDirectory}/".time()."{$configuration->getSiteaccessName()}_data.yaml";
-        $fs->dumpFile($path, $content);
-//        /** @var MigrationDefinitionCollection $migrationDefinitions */
-//        $migrationDefinitions = $this->migrationService->getMigrationsDefinitions([$path]);
-//        foreach ($migrationDefinitions as $migrationDefinition) {
-//            $migration = $this->migrationService->parseMigrationDefinition($migrationDefinition);
-//            $this->migrationService->executeMigration($migration);
-//        }
+        $migrationName = "{$configuration->getSiteaccessName()}_data.yaml";
+        $migration = new Migration($migrationName, $content);
+        $this->migrationService->add($migration);
+        if (!$this->migrationService->isMigrationExecuted($migration)) {
+            $this->migrationService->executeOne($migration);
+        }
 
         if ($configuration->getRootLocationId() > 0) {
             return $configuration->getRoot()->location;

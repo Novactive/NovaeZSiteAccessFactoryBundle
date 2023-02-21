@@ -7,82 +7,134 @@
 -
     type: content
     mode: create
-    content_type: 'novaezsiteaccessfactory_static_home_page'
-    parent_location: 2
-    attributes:
-        name: {{ name }}
-    lang: {{ lang }}
-    location_remote_id: "novaezsiteaccessfactory-sa-top-location-{{ siteaccessName }}"
+    metadata:
+        contentType: 'novaezsiteaccessfactory_static_home_page'
+        mainTranslation: {{ lang }}
+        creatorId: null
+        modificationDate: null
+        publicationDate: null
+        remoteId: null
+        alwaysAvailable: true
+        section:
+            id: 1
+            identifier: standard
+    location:
+        parentLocationId: 2
+        locationRemoteId: "novaezsiteaccessfactory-sa-top-location-{{ siteaccessName }}"
+        hidden: false
+        priority: 0
+        sortField: 2
+        sortOrder: 0
+    fields:
+        -
+            fieldDefIdentifier: name
+            languageCode: {{ lang }}
+            value: "Home Page {{ name }}"
+
     references:
         -
-            identifier: '{{ key }}_static_home_page_location_id'
-            attribute: location_id
+            name: '{{ key }}_static_home_page_location_id'
+            type: location_id
         -
-            identifier: '{{ key }}_static_home_page_content_id'
-            attribute: content_id
+            name: '{{ key }}_static_home_page_content_id'
+            type: content_id
         -
-            identifier: '{{ key }}_static_home_page_subtree'
-            attribute: path
--
-    type: content
-    mode: create
-    content_type: 'novaezsiteaccessfactory_site_configuration'
-    parent_location: 'reference:{{ key }}_static_home_page_location_id'
-    priority: 999
-    attributes:
-        name: "Configuration"
-        footer: {{  helpers.richText('Footer description') }}
-    lang: {{ lang }}
-    references:
-        -
-            identifier: '{{ key }}_configuration_content_id'
-            attribute: content_id
+            name: '{{ key }}_static_home_page_subtree'
+            type: path
+
 
 -
     type: content
-    mode: update
-    match:
-        content_id: 'reference:{{ key }}_static_home_page_content_id'
-    lang: {{ lang }}
-    attributes:
-        name: "Home Page {{ name }}"
+    mode: create
+    metadata:
+        contentType: 'novaezsiteaccessfactory_site_configuration'
+        mainTranslation: {{ lang }}
+        creatorId: null
+        modificationDate: null
+        publicationDate: null
+        remoteId: null
+        alwaysAvailable: true
+    location:
+        parentLocationId: 'reference:{{ key }}_static_home_page_location_id'
+        locationRemoteId: null
+        hidden: false
+        sortField: 2
+        sortOrder: 0
+        priority: 999
+    fields:
+        -
+            fieldDefIdentifier: name
+            languageCode: {{ lang }}
+            value: "Configuration"
+        -
+            fieldDefIdentifier: footer
+            languageCode: {{ lang }}
+            value: {{ helpers.richText('Footer description') }}
+    references:
+        -
+            name: '{{ key }}_configuration_content_id'
+            type: content_id
 {% endif %}
 
 {# Groups #}
 -
     type: user_group
     mode: create
-    parent_group_id: 4 # In the initial db
-    name: "{{ name }} Group"
-    lang: {{ lang }}
-    remote_id: "novaezsiteaccessfactory-sa-top-group-{{ siteaccessName }}"
+    metadata:
+        contentTypeIdentifier: user_group
+        mainLanguage: {{ lang }}
+        parentGroupId: 4
+        remoteId: "novaezsiteaccessfactory-sa-top-group-{{ siteaccessName }}"
+        name: "{{ name }} Group"
+    fields:
+        -
+            fieldDefIdentifier: name
+            fieldTypeIdentifier: ezstring
+            languageCode: {{ lang }}
+            value: "{{ name }} Group"
     references:
-    -
-        identifier: {{ key }}_parent_site_group_content_id
-        attribute: id
+        -
+            name: {{ key }}_parent_site_group_content_id
+            type: user_group_id
 
 -
     type: user_group
     mode: create
-    parent_group_id: 'reference:{{ key }}_parent_site_group_content_id'
-    name: "Admins"
-    lang: {{ lang }}
+    metadata:
+        parentGroupId: 'reference:{{ key }}_parent_site_group_content_id'
+        mainLanguage: {{ lang }}
+    fields:
+        -
+            fieldDefIdentifier: name
+            fieldTypeIdentifier: ezstring
+            languageCode: {{ lang }}
+            value: "Admins"
     references:
-    -
-        identifier: {{ key }}_admin_site_group_content_id
-        attribute: id
+        -
+            name: {{ key }}_admin_site_group_content_id
+            type: user_group_id
 
 {# First Admin #}
 {% if user is null %}
 -
     type: user
     mode: create
-    first_name: "Admin"
-    last_name: {{ name }}
-    username: {{ adminEmail }}
-    email: {{ adminEmail }}
-    password: {{ adminPassword }}
-    lang: {{ lang }}
+    metadata:
+        contentType: user
+        username: {{ adminEmail }}
+        email: {{ adminEmail }}
+        login: {{ name }}
+        password: {{ adminPassword }}
+        lang: {{ lang }}
+    fields:
+        -
+            fieldDefIdentifier: first_name
+            fieldTypeIdentifier: ezstring
+            value: "Admin"
+        -
+            fieldDefIdentifier: last_name
+            fieldTypeIdentifier: ezstring
+            value: {{ name }}
     groups: ['reference:{{ key }}_admin_site_group_content_id']
 
 {% else %}
@@ -90,7 +142,8 @@
     type: user
     mode: update
     match:
-        id: {{ user.id }}
+        field: id
+        value: {{ user.id }}
     groups: ['reference:{{ key }}_admin_site_group_content_id', {{ groupIds|join(',') }}]
 
 {% endif %}
@@ -100,7 +153,8 @@
 -
     type: role
     mode: create
-    name: "Admin {{ name }}"
+    metadata:
+        identifier: "Admin {{ name }}"
     policies:
         -
             module: content

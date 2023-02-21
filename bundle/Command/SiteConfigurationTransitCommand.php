@@ -98,6 +98,7 @@ final class SiteConfigurationTransitCommand extends Command
         $rep = $this->entityManager->getRepository(SiteConfiguration::class);
         $siteConfig = $rep->findByFilters(['status' => $requiredState]);
 
+
         $needCacheClear = false;
         foreach ($siteConfig as $config) {
             /* @var SiteConfiguration $config */
@@ -129,7 +130,12 @@ final class SiteConfigurationTransitCommand extends Command
     {
         $output->write('Create Login Permissions in a new Thread...');
         $process = new Process(
-            "bin/console novaezsiteaccessfactory:create:userlogin:permissions {$siteAccessIdentifier}",
+            [
+                "php",
+                "bin/console",
+                "novaezsiteaccessfactory:create:userlogin:permissions",
+                "{$siteAccessIdentifier}",
+            ],
             $this->rootDir
         );
         try {

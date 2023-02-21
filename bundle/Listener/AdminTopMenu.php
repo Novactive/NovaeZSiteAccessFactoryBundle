@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Listener;
 
-use eZ\Publish\API\Repository\PermissionResolver;
+use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\AdminUi\Menu\Event\ConfigureMenuEvent;
 use Knp\Menu\MenuItem;
 

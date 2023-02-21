@@ -15,7 +15,7 @@ namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Twig;
 
 use Exception;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
-use eZ\Publish\API\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose\EzRepositoryAware;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Service\SiteConfiguration as SiteConfigurationService;
 use ScssPhp\ScssPhp\Compiler;
