@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Novactive\Bundle\eZSiteAccessFactoryBundle\Command;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use LogicException;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Core\Compose\EzRepositoryAware;
 use Novactive\Bundle\eZSiteAccessFactoryBundle\Entity\SiteConfiguration;
@@ -41,10 +41,8 @@ final class SiteConfigurationTransitCommand extends Command
      */
     private $workflows;
 
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
+    /** @var ManagerRegistry */
+    private $managerRegistry;
 
     /**
      * @var string
@@ -60,9 +58,12 @@ final class SiteConfigurationTransitCommand extends Command
     /**
      * @required
      */
-    public function setDependencies(EntityManagerInterface $entityManager, Registry $workflows): self
+    public function setDependencies(
+        ManagerRegistry $managerRegistry,
+        Registry $workflows
+    ): self
     {
-        $this->entityManager = $entityManager;
+        $this->managerRegistry = $managerRegistry;
         $this->workflows = $workflows;
 
         return $this;
@@ -93,11 +94,10 @@ final class SiteConfigurationTransitCommand extends Command
         }
 
         $requiredState = $mapStatus[$transition];
-
         $io->title("Looking for the SiteConfiguration that are '{$requiredState}'");
-        $rep = $this->entityManager->getRepository(SiteConfiguration::class);
+        $entityManager = $this->managerRegistry->getManager();
+        $rep = $entityManager->getRepository(SiteConfiguration::class);
         $siteConfig = $rep->findByFilters(['status' => $requiredState]);
-
 
         $needCacheClear = false;
         foreach ($siteConfig as $config) {
@@ -112,7 +112,7 @@ final class SiteConfigurationTransitCommand extends Command
             }
         }
 
-        $this->entityManager->flush();
+        $entityManager->flush();
 
         if ($needCacheClear) {
             $this->clearCache($output);
@@ -157,12 +157,22 @@ final class SiteConfigurationTransitCommand extends Command
         $arrayInput = new ArrayInput($arguments);
         $command->run($arrayInput, $output);
 
-        $command = $this->getApplication()->find('cache:clear');
-        $arguments = [
-            'command' => 'cache:clear',
-        ];
-        $arrayInput = new ArrayInput($arguments);
-        $command->run($arrayInput, $output);
+        $process = new Process(
+            [
+                "php",
+                "bin/console",
+                "cache:clear",
+            ],
+            $this->rootDir
+        );
+
+        try {
+            $process->mustRun();
+            $output->writeln('Cache clear');
+            $output->write($process->getOutput());
+        } catch (ProcessFailedException $exception) {
+            $output->write($exception->getMessage());
+        }
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
