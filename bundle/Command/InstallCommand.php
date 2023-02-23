@@ -82,7 +82,7 @@ class InstallCommand extends Command
             $content = $this->twig->render('@ibexadesign/site_configuration/content_types.yaml.twig');
             $migrationName = 'siteaccess_factory_data.yaml';
             $migration = new Migration($migrationName, $content);
-            $this->migrationService->add($migration);
+
             if (!$this->migrationService->isMigrationExecuted($migration)) {
                 $this->migrationService->executeOne($migration);
             }
