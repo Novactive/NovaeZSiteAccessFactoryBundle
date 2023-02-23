@@ -113,7 +113,7 @@ final class Processor
 
         $migrationName = "{$configuration->getSiteaccessName()}_data.yaml";
         $migration = new Migration($migrationName, $content);
-        $this->migrationService->add($migration);
+
         if (!$this->migrationService->isMigrationExecuted($migration)) {
             $this->migrationService->executeOne($migration);
         }
